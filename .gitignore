@@ -1,0 +1,32 @@
+#######################
+### .gitignore file ###
+#######################
+
+# blacklist all files
+/*
+
+# whitelist the following files
+!.gitignore
+!README.md
+!bash/
+!bspwm/
+!dunst/
+!gtk-2.0/
+!gtk-3.0/
+!micro/
+!nano/
+!polybar/
+!ranger/
+!rofi/
+!sxhkd/
+
+# blacklist the following files
+micro/buffers
+
+# apply settings to include specific files
+!Code\ -\ OSS/
+Code\ -\ OSS/*
+!Code\ -\ OSS/User/
+Code\ -\ OSS/User/*
+!Code\ -\ OSS/User/keybindings.json
+!Code\ -\ OSS/User/settings.json
