@@ -1,0 +1,162 @@
+##########################################
+###   teal's sxhkd configuration file  ###
+### window manager independent hotkeys ###
+##########################################
+
+##############
+### basics ###
+##############
+
+# show this help menu
+F1
+    ~/.config/sxhkd/show_help | rofi -dmenu -i -p hotkeys
+
+# make sxhkd reload its configuration files
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# launch a terminal
+super + Return
+    xfce4-terminal
+
+# lock screen / log off
+super + {_,shift + }BackSpace
+    {lock screen,log off}
+
+# application launcher / window switcher
+super + {_,shift + }@space
+    rofi -show {drun,window} -i
+
+# close window / kill application
+super + {w,q}
+	bspc node -{c,k}
+
+# quit / restart bspwm
+super + shift + {q,r}
+	bspc {quit,wm -r}
+
+# search home / search root
+super + {_,shift +} f
+	catfish --path={~,/}
+
+# TODO: switch between recent nodes, but also run a popup script
+#super + {_,shift + }Tab
+
+##################
+### multimedia ###
+##################
+
+# TODO: visual indication
+
+# mute / lower / raise volume
+XF86Audio{Mute,LowerVolume,RaiseVolume}
+    pactl set-sink-{mute 0 toggle,volume 0 -5%,volume 0 +5%}
+
+# rewind / play-pause / skip tracks
+XF86Audio{Prev,Play,Next}
+    playerctl {previous,play-pause,next}
+
+# seek forward / backwards by five seconds
+shift + XF86Audio{Prev,Next}
+	playerctl position 5 {-,+}
+
+# search home / search root
+{_,shift+ }XF86Search
+    catfish --path={~,/}
+
+# control the screen brightness
+XF86MonBrightness{Down,Up}
+    xbacklight {-dec 10,-inc 10}
+
+# capture the entire screen
+Print
+	xfce4-screenshooter -fs /home/teal/Pictures/screenshots/
+#   scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png'
+
+# capture a select area / the current focus
+super + {_,shift + }Print
+	xfce4-screenshooter {-rc,-wc} -s /home/teal/Pictures/screenshots/
+#   scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png' -{s -l style=dash,u}
+
+##################
+### focus/swap ###
+##################
+
+# focus the node in the given direction
+super + {Left,Down,Up,Right}
+	bspc node -f {west,south,north,east}
+
+# swap nodes in the given direction
+super + shift + {Left,Down,Up,Right}
+	bspc node -s {west,south,north,east}
+
+# focus or send to given desktop
+super + {_,shift + } {1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,0}'
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next / previous node
+super + {_,shift + }c
+	bspc node -f {next,prev}.local
+
+# focus the next / previous desktop
+super + bracket{right,left}
+	bspc desktop -f {next,prev}.local
+
+# send to the next / previous desktop
+super + shift + bracket{right,left}
+	bspc node -d {next,prev}.local
+
+# focus the newer / older node in history
+super + {_,shift + }grave
+	bspc wm -h off; \
+	bspc node {newer,older} -f; \
+	bspc wm -h on
+
+#################
+### preselect ###
+#################
+
+# preselect the direction
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the focused node preselection
+super + ctrl + 0
+	bspc node -p cancel
+
+# cancel the focused desktop preselection
+super + ctrl + shift + 0
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#####################
+### move / resize ###
+#####################
+
+# expand a window by moving its side outward
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving its side inward
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+#######################
+### key replacement ###
+#######################
+
+# TODO: alt should function similar to macos's option - 
+# return a different character when used with a key.
+# Unfortunatly, I don't know how to return a character.
+
+alt + q
+    printf 'e'
+alt + w
+    echo "r"
