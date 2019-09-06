@@ -1,0 +1,27 @@
+#pathfinder
+
+# default background | base00
+# lighter background (Used for status bars) | base01
+# selection background | base02
+# comments | base03 | grey
+color-link comment "E2E4E5"
+# dark foreground (used for status bars) | base04
+# default foreground, caret, delimiters, operators | base05
+# light foreground (not often used) | base06
+# light background (not often used) | base07
+# variables, XML Tags, markup link text, markup lists, diff deleted | base08 | red
+color-link constant "#FF5C57"
+# integers | boolean | constants | XML Attributes | markup link url | base09 | orange
+color-link constant.bool "FF9F43"
+color-link constant.number "FF9F43"
+color-link constant.specialChar "FF9F43"
+# classes | markup bold | search text background | base0A | yellow
+# strings | inherited class, markup code, diff inserted | base0B | green
+color-link constant.string "5AF78E"
+# support | regular expressions, escape characters, markup quotes | base0C | aqua
+# functions | methods, attribute IDs, headings | base0D | blue
+
+# keywords | storage, selector, markup Italic, diff Changed | base 0E | magenta
+color-link type "FF6AC1"
+# deprecated | opening/closing tags, e.g. <?php ?> | base0F | brown
+
