@@ -1,0 +1,107 @@
+{
+    "java.home": "/usr/lib/jvm/default",
+    "editor.quickSuggestions": {
+        "other": false,
+        "comments": false,
+        "strings": false,
+    },
+    "editor.selectionClipboard": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "window.closeWhenEmpty": true,
+    "window.menuBarVisibility": "toggle",
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "Solarized Light",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "readme",
+    "dart.allowAnalytics": false,
+    "dart.flutterHotRestartOnSave": true,
+    "todo-tree.expanded": true,
+    "todo-tree.regex": "((@|//|#|<!--|;|/\\*|^)\\s*($TAGS)|^\\s*- \\[ ,\\])",
+    "todo-tree.tags": [
+        "TODO",
+        "FIXME",
+        "XXX",
+        "DONE",
+        "BUG",
+        "!!!",
+        "HACK",
+        "NOTE",
+        "FAQ",
+        "IDEA"
+    ],
+    "todo-tree.defaultHighlight": {
+        "icon": "alert",
+        "type": "text",
+        "iconColour": "orange",
+        "foreground": "white",
+        "background": "black"
+    },
+    "todo-tree.customHighlight": {
+        "TODO": {
+            "icon": "check",
+            "iconColour": "#16B085", // aquamarine
+            "background": "green"
+        },
+        "FIXME": {
+            "icon": "issue-opened",
+            "iconColour": "#FF2400", // scarlet
+            "background": "#FF2400"
+        },
+        "XXX": {
+            "icon": "star",
+            "iconColour": "#00BFFF", // skyblue
+            "background": "#00BFFF"
+        },
+        "DONE":{
+            "icon": "checklist",
+            "iconColour": "#0038B8", // blue
+            "background": "#0038B8"
+        },
+        "BUG": {
+            "icon": "bug",
+            "iconColour": "#9400D3", // darkviolet
+            "background": "#9400D3"
+        },
+        "!!!": {
+            "icon": "megaphone",
+            "iconColour": "#FF8C00", // darkorange
+            "background": "#FF8C00"
+        },
+        "HACK": {
+            "icon": "report",
+            "iconColour": "#A52A2A", // brown
+            "background": "#A52A2A"
+        },
+        "NOTE": {
+            "icon": "pencil",
+            "iconColour": "#696969", // dimgrey
+            "background": "#696969"
+        },
+        "FAQ": {
+            "icon": "tasklist",
+            "iconColour": "#FF1493", // deeppink
+            "background": "#FF1493"
+        },
+        "IDEA": {
+            "icon": "light-bulb",
+            "iconColour": "#FFD700", // gold
+            "background": "#FFD700"
+        }
+    },
+    "java.configuration.checkProjectSettingsExclusions": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "java.errors.incompleteClasspath.severity": "ignore"
+}
