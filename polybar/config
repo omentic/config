@@ -1,0 +1,122 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;==========================================================
+
+;====================
+; bar configuration
+;====================
+
+[bar/pathfinder]
+width = 100%
+height = 25
+bottom = true
+
+background = #222
+foreground = #dfdfdf
+
+font-0 = NotoSansMono:size=10
+font-1 = NotoSansSymbols2-Regular:size=10
+
+modules-left = bspwm
+;modules-center = mpd
+modules-right = wired-network wireless-network updates pulseaudio cpu memory filesystem battery date powermenu
+
+module-margin-right = 1
+;offset-x = 15
+;offset-y = 15
+;width = 98.5%
+
+;=======================
+; module configuration
+;=======================
+
+[module/bspwm]
+type = internal/bspwm
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+label-focused-foreground = #FFFFFF
+
+[module/network]
+type = internal/network
+interval = 3.0
+
+[module/wired-network]
+inherit = module/network
+interface = enp57s0u1u2
+label-connected = ethernet: %essid% at %downspeed% |
+label-disconnected = ethernet: disconnected |
+
+[module/wireless-network]
+inherit = module/network
+interface = wlp58s0
+label-connected = wifi: %essid% |
+label-disconnected = wifi: disconnected |
+
+[module/updates]
+type = custom/script
+exec = pamac checkupdates | head -n 1 | rev | cut -c 2- | rev
+interval = 600
+label = updates: %output% |
+click-left = xfce4-terminal -x sudo pacman -Syyu
+
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+interval = 10
+label-volume = audio: %percentage%% |
+label-muted = audio: muted |
+; emojis: 🔇🔈🔉🔊
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+label = cpu: %percentage%% |
+
+[module/memory]
+type = internal/memory
+interval = 3
+label = ram: %gb_used% |
+
+[module/filesystem]
+type = internal/fs
+mount-0 = /
+interval = 10
+label-mounted = teal: %used% |
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+poll-interval = 5
+label-charging = pwr: ⚡ %percentage%% |
+label-discharging = pwr: %percentage%% |
+
+[module/date]
+type = internal/date
+interval = 1.0
+label = %date%
+date = time: %I:%M %P |
+date-alt = date: %a, %b %d |
+
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = ⏾.
+label-close = cancel
+label-separator = |
+menu-0-0 = reboot
+menu-0-0-exec = reboot
+menu-0-1 = power off
+menu-0-1-exec = poweroff
+; emojis: ⏻ ⏼ ⏽ ⭘ ⏾

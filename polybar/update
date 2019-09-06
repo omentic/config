@@ -1,0 +1,12 @@
+#! /bin/bash
+
+pamac checkupdates -aq
+UPDATE=$?
+echo -e "\n"
+echo $?
+
+if [ $? -eq 100 ]; then
+    echo "updates: available |";
+else
+    echo "";
+fi
