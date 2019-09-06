@@ -1,0 +1,9 @@
+!=====================================
+!== teal's rofi configuration file ===
+!==    a pop-up window switcher    ===
+!=====================================
+
+rofi.modi:          window,run,ssh,drun
+rofi.theme:         Adapta-Nokto
+rofi.show-icons:    true
+rofi.icon-theme:    Papirus-Adapta-Nokto-Maia
