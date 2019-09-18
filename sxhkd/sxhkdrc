@@ -46,11 +46,11 @@ super + {_,shift +} f
 ### multimedia ###
 ##################
 
-# TODO: visual indication
-
 # mute / lower / raise volume
 XF86Audio{Mute,LowerVolume,RaiseVolume}
-    pactl set-sink-{mute 0 toggle,volume 0 -5%,volume 0 +5%}
+    pactl set-sink-{mute 0 toggle,volume 0 -5%,volume 0 +5%} && \
+    dunstify -a "Volume" -u low -r "865863" "Volume: $(pulsemixer --get-volume | sed 's/ .*//')%" \
+    "$(if [[ $(pulsemixer --get-mute) == 1 ]]; then echo 'mute'; else echo ''; fi)"
 
 # rewind / play-pause / skip tracks
 XF86Audio{Prev,Play,Next}
@@ -66,7 +66,8 @@ shift + XF86Audio{Prev,Next}
 
 # control the screen brightness
 XF86MonBrightness{Down,Up}
-    xbacklight {-dec 10,-inc 10}
+    xbacklight {-dec 10,-inc 10} && \
+    dunstify -a "Backlight" -u low -r "954448" "Backlight: $(xbacklight -get | sed 's/\..*//')%"
 
 # capture the entire screen
 Print
@@ -90,6 +91,7 @@ super + {Left,Down,Up,Right}
 super + shift + {Left,Down,Up,Right}
 	bspc node -s {west,south,north,east}
 
+# workspace 10 is currently broken
 # focus or send to given desktop
 super + {_,shift + } {1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,0}'
@@ -148,15 +150,12 @@ super + alt + {Left,Down,Up,Right}
 super + alt + shift + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-#######################
-### key replacement ###
-#######################
+########################
+### additional notes ###
+########################
 
-# TODO: alt should function similar to macos's option - 
-# return a different character when used with a key.
-# Unfortunatly, I don't know how to return a character.
+# insert special characters (altgr-intl)
+altgr + key
 
-alt + q
-    printf 'e'
-alt + w
-    echo "r"
+# project to a display
+xrandr; xrandr --output DISPLAY_NAME --auto

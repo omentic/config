@@ -17,6 +17,7 @@ dunst &
 polybar pathfinder &
 # lemonbar -g x25 -b -f
 feh --randomize --bg-scale --no-fehbg ~/Pictures/backgrounds/* &
+xbacklight -set 50
 
 ################################################
 ### configure window manager characteristics ###
