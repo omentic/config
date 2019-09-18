@@ -35,6 +35,8 @@ module-margin-right = 1
 ;offset-y = 15
 ;width = 98.5%
 
+wm-restack = bspwm
+
 ;=======================
 ; module configuration
 ;=======================
@@ -64,10 +66,11 @@ label-disconnected = wifi: disconnected |
 
 [module/updates]
 type = custom/script
-exec = pamac checkupdates | head -n 1 | rev | cut -c 2- | rev
+#exec = pamac checkupdates | head -n 1 | rev | cut -c 2- | rev
+exec = UPDATES=$(pamac checkupdates -q | wc -l); if [ $UPDATES == 0 ]; then echo ""; else echo "updates: $UPDATES available packages |"; fi
 interval = 600
-label = updates: %output% |
-click-left = xfce4-terminal -x sudo pacman -Syyu
+label = %output%
+click-left = xfce4-terminal -x pamac update
 
 [module/pulseaudio]
 type = internal/pulseaudio
