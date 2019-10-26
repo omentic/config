@@ -21,8 +21,8 @@
     "telemetry.enableCrashReporter": false,
     "window.closeWhenEmpty": true,
     "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 1,
-    "workbench.colorTheme": "One Dark Pro",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Solarized Light",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "readme",
     "dart.allowAnalytics": false,
@@ -103,5 +103,7 @@
         "NOTE",
         "FAQ",
         "IDEA"
-    ]
+    ],
+    "editor.minimap.enabled": true,
+    "latex-workshop.view.pdf.viewer": "tab"
 }

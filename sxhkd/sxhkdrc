@@ -8,8 +8,12 @@
 ##############
 
 # show this help menu
-F1
-    ~/.config/sxhkd/show_help | rofi -dmenu -i -p hotkeys
+super + F1
+    ~/.config/scripts/show_help | rofi -dmenu -i -p hotkeys
+# todo: create separate help menus, break into mod + F#
+# move show_help out of the sxhkd folder - to scripts?
+# slim down my startpage so i actually use it
+# https://github.com/wangzme/cheeet
 
 # make sxhkd reload its configuration files
 super + Escape
@@ -19,9 +23,9 @@ super + Escape
 super + Return
     xfce4-terminal
 
-# lock screen / log off
-super + {_,shift + }BackSpace
-    {lock screen,log off}
+# lock screen
+super + BackSpace
+    xsecurelock
 
 # application launcher / window switcher
 super + {_,shift + }@space
@@ -71,13 +75,19 @@ XF86MonBrightness{Down,Up}
 
 # capture the entire screen
 Print
-	xfce4-screenshooter -fs /home/teal/Pictures/screenshots/
-#   scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png'
+    scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png' && \
+    dunstify -a "Screenshot" -r "273685" "Screenshot captured" "screen saved to ~/Pictures/screenshots"
 
-# capture a select area / the current focus
-super + {_,shift + }Print
-	xfce4-screenshooter {-rc,-wc} -s /home/teal/Pictures/screenshots/
-#   scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png' -{s -l style=dash,u}
+# capture the current focus
+super + shift + Print
+    scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png' -u && \
+    dunstify -a "Screenshot" -r "273685" "Screenshot captured" "focus saved to ~/Pictures/screenshots"
+
+# capture a select area
+super + Print
+    sleep 0.2; dunstify -a "Screenshot" -r "273685" "Select an area" && \
+    scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png' -sl style=dash && \
+    dunstify -a "Screenshot" -r "273685" "Screenshot captured" "area saved to ~/Pictures/screenshots"
 
 ##################
 ### focus/swap ###
