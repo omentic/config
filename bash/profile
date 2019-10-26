@@ -11,7 +11,7 @@ export ANDROID_HOME="$HOME/Applications/android-sdk"
 
 # default applications
 export BROWSER=/usr/bin/firefox
-export EDITOR=/usr/bin/nano
+export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/code
 
 # PATH
@@ -20,3 +20,6 @@ export PATH="$PATH:$HOME/Applications/scripts"
 export PATH="$PATH:$HOME/Applications/android-studio/bin"
 export PATH="$PATH:$HOME/Applications/android-sdk/platform-tools"
 export PATH="$PATH:$HOME/Applications/flutter/bin"
+export PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
+
