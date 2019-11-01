@@ -32,10 +32,13 @@ shopt -s histappend
 
 alias amend='git commit --amend --no-edit'
 alias android-studio='~/Applications/android-studio/bin/studio.sh'
+alias bat='bat --pager="less -FR"'
 alias calc='gcalccmd'
+alias config='git -C $HOME/.config/'
 alias clean='sudo pacman -Rs $(pacman -Qqdt)'
 alias cp='cp -i'
 alias df='df -h'
+alias dril='fortune -o dril'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 alias grep='grep --colour=auto'
@@ -54,5 +57,3 @@ alias peninsulapnwfirst='slack-term -config ~/.config/slack-term/peninsulapnwfir
 alias frcscouts='slack-term -config ~/.config/slack-term/frcscouts'
 alias thegreenalliance='slack-term -config ~/.config/slack-term/thegreenalliance'
 alias frcfusion360='slack-term -config ~/.config/slack-term/frcfusion360'
-
-alias nmtui='nmtui; ~/.consequences/gethad.sh &'

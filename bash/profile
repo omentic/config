@@ -8,6 +8,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 # locations
 export XDG_CONFIG_HOME="$HOME/.config"
 export ANDROID_HOME="$HOME/Applications/android-sdk"
+export GOPATH="$HOME/.go"
 
 # default applications
 export BROWSER=/usr/bin/firefox
