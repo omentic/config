@@ -21,10 +21,9 @@
     "telemetry.enableCrashReporter": false,
     "window.closeWhenEmpty": true,
     "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 0,
-    "workbench.colorTheme": "Solarized Light",
+    "window.zoomLevel": 1,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.startupEditor": "readme",
+    "workbench.startupEditor": "none",
     "dart.allowAnalytics": false,
     "dart.flutterHotRestartOnSave": true,
     "java.configuration.checkProjectSettingsExclusions": false,
@@ -105,5 +104,7 @@
         "IDEA"
     ],
     "editor.minimap.enabled": true,
-    "latex-workshop.view.pdf.viewer": "tab"
+    "latex-workshop.view.pdf.viewer": "tab",
+    "workbench.colorTheme": "Horizon",
+    "python.jediEnabled": false,
 }
