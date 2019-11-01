@@ -15,6 +15,17 @@ super + F1
 # slim down my startpage so i actually use it
 # https://github.com/wangzme/cheeet
 
+# launch my password manager
+super + F2
+    ~/.config/scripts/rofi-pass/rofi-pass
+# todo: eliminate overhead (and most of the python stuff)
+
+# run rofimoji
+super + F3
+    rofimoji
+# todo: decide on which function key to which function
+# note: rofimoji stays as a package because emojis update
+
 # make sxhkd reload its configuration files
 super + Escape
 	pkill -USR1 -x sxhkd
