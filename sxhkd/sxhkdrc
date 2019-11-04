@@ -67,13 +67,30 @@ XF86Audio{Mute,LowerVolume,RaiseVolume}
     dunstify -a "Volume" -u low -r "865863" "Volume: $(pulsemixer --get-volume | sed 's/ .*//')%" \
     "$(if [[ $(pulsemixer --get-mute) == 1 ]]; then echo 'mute'; else echo ''; fi)"
 
-# rewind / play-pause / skip tracks
-XF86Audio{Prev,Play,Next}
-    playerctl {previous,play-pause,next}
+# rewind track
+XF86AudioPrev
+    playerctl previous || \
+    mocp --previous
 
-# seek forward / backwards by five seconds
-shift + XF86Audio{Prev,Next}
-	playerctl position 5 {-,+}
+# toggle play-pause of track
+XF86AudioPlay
+    playerctl play-pause || \
+    mocp --toggle-pause
+
+# skip track
+XF86AudioNext
+    playerctl next || \
+    mocp --next
+
+# seek backwards by five seconds
+shift + XF86AudioPrev
+    playerctl position 5 - || \
+    mocp --seek -5
+
+# seek forwards by five seconds
+shift + XF86AudioNext
+    playerctl position 5 + || \
+    mocp --seek 5
 
 # search home / search root
 {_,shift+ }XF86Search

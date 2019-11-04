@@ -90,7 +90,7 @@
         "background": "black"
     },
     "todo-tree.tree.expanded": true,
-    "todo-tree.regex.regex": "((@|//|#|<!--|;|/\\*|^)\\s*($TAGS)|^\\s*- \\[ ,\\])",
+    "todo-tree.regex.regex": "((@|//|#|\"|<!--|;|/\\*|^)\\s*($TAGS)|^\\s*- \\[ ,\\])",
     "todo-tree.general.tags": [
         "TODO",
         "FIXME",
@@ -103,8 +103,9 @@
         "FAQ",
         "IDEA"
     ],
-    "editor.minimap.enabled": true,
+    "editor.minimap.enabled": false,
     "latex-workshop.view.pdf.viewer": "tab",
     "workbench.colorTheme": "Horizon",
     "python.jediEnabled": false,
+    "breadcrumbs.enabled": true,
 }

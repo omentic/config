@@ -30,30 +30,22 @@ shopt -s histappend
 # aliases #
 ###########
 
-alias amend='git commit --amend --no-edit'
 alias android-studio='~/Applications/android-studio/bin/studio.sh'
 alias bat='bat --pager="less -FR"'
-alias calc='gcalccmd'
 alias config='git -C $HOME/.config/'
 alias clean='sudo pacman -Rs $(pacman -Qqdt)'
 alias cp='cp -i'
 alias df='df -h'
 alias dril='fortune -o dril'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
 alias grep='grep --colour=auto'
 alias ls='ls --color=auto'
 alias map='telnet mapscii.me'
-alias more=less
-alias nv="nvim"
+alias more='less'
+alias neovim='nvim'
+alias nv='nvim'
 alias q='exit'
 alias starwars='telnet towel.blinkenlights.nl'
 alias update='sudo pacman -Syyu'
 alias weather='curl https://wttr.in/~Bainbridge+Island?q0'
 alias yt='youtube-dl -o "~/Videos/%(title)s-%(id)s.%(ext)s"'
 
-alias spartronics='slack-term -config ~/.config/slack-term/spartronics'
-alias peninsulapnwfirst='slack-term -config ~/.config/slack-term/peninsulapnwfirst'
-alias frcscouts='slack-term -config ~/.config/slack-term/frcscouts'
-alias thegreenalliance='slack-term -config ~/.config/slack-term/thegreenalliance'
-alias frcfusion360='slack-term -config ~/.config/slack-term/frcfusion360'

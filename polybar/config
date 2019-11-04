@@ -55,7 +55,7 @@ interval = 3.0
 [module/wired-network]
 inherit = module/network
 interface = enp57s0u1u2
-label-connected = ethernet: %essid% at %downspeed% |
+label-connected = ethernet: %essid% at %upspeed% up %downspeed% down |
 label-disconnected = ethernet: disconnected |
 
 [module/wireless-network]
