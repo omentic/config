@@ -31,7 +31,7 @@ shopt -s histappend
 ###########
 
 alias android-studio='~/Applications/android-studio/bin/studio.sh'
-alias bat='bat --pager="less -FR"'
+alias bat='bat --pager="less -FR" --paging never'
 alias config='git -C $HOME/.config/'
 alias clean='sudo pacman -Rs $(pacman -Qqdt)'
 alias cp='cp -i'
@@ -45,7 +45,9 @@ alias neovim='nvim'
 alias nv='nvim'
 alias q='exit'
 alias starwars='telnet towel.blinkenlights.nl'
+alias todo='nvim ~/Documents/todo'
 alias update='sudo pacman -Syyu'
+alias vim='nvim --noplugin'
 alias weather='curl https://wttr.in/~Bainbridge+Island?q0'
 alias yt='youtube-dl -o "~/Videos/%(title)s-%(id)s.%(ext)s"'
 

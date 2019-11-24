@@ -17,6 +17,7 @@
 !Kvantum/
 !micro/
 !nano/
+!nvim/
 !polybar/
 !ranger/
 !rofi/
@@ -24,6 +25,7 @@
 
 # blacklist the following files
 micro/buffers
+nvim/plugged/*
 
 # apply settings to include specific files
 !Code\ -\ OSS/
