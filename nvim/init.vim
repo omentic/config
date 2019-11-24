@@ -10,32 +10,32 @@ endif
 " install plugins thorugh vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
-    Plug 'git@github.com:j-james/vim-heresy.git'
-    Plug 'git@github.com:jceb/vim-orgmode.git'
+    Plug 'https://github.com/j-james/vim-heresy.git'
+    Plug 'https://github.com/jceb/vim-orgmode.git'
     " editor
-    Plug 'git@github.com:joshdick/onedark.vim.git'
-    Plug 'git@github.com:rakr/vim-one.git'
-    Plug 'git@github.com:flazz/vim-colorschemes.git'
-    "Plug 'git@github.com:scrooloose/nerdtree.git'
-    Plug 'git@github.com:tpope/vim-vinegar.git'
-    Plug 'git@github.com:itchyny/lightline.vim.git'
-    " Plug 'git@github.com:vim-airline/vim-airline.git'
+    Plug 'https://github.com/joshdick/onedark.vim.git'
+    Plug 'https://github.com/rakr/vim-one.git'
+    Plug 'https://github.com/flazz/vim-colorschemes.git'
+    "Plug 'https://github.com/scrooloose/nerdtree.git'
+    Plug 'https://github.com/tpope/vim-vinegar.git'
+    Plug 'https://github.com/itchyny/lightline.vim.git'
+    " Plug 'https://github.com/vim-airline/vim-airline.git'
 
     " functionality
-    Plug 'git@github.com:tpope/vim-eunuch.git'
-    Plug 'git@github.com:tpope/vim-surround.git'
-    Plug 'git@github.com:terryma/vim-multiple-cursors.git'
+    Plug 'https://github.com/tpope/vim-eunuch.git'
+    Plug 'https://github.com/tpope/vim-surround.git'
+    Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 
     " language
-    " Plug 'git@github.com:dense-analysis/ale.git'
-    " Plug 'git@github.com:scrooloose/syntastic.git'
+    " Plug 'https://github.com/dense-analysis/ale.git'
+    " Plug 'https://github.com/scrooloose/syntastic.git'
 
     " git
-    Plug 'git@github.com:tpope/vim-fugitive.git'
-    Plug 'git@github.com:airblade/vim-gitgutter.git'
+    Plug 'https://github.com/tpope/vim-fugitive.git'
+    Plug 'https://github.com/airblade/vim-gitgutter.git'
 
     " latex
-    Plug 'git@github.com:xuhdev/vim-latex-live-preview.git', { 'for': 'tex' }
+    Plug 'https://github.com/xuhdev/vim-latex-live-preview.git', { 'for': 'tex' }
 
 call plug#end()
 
