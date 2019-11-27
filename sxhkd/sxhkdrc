@@ -103,18 +103,18 @@ XF86MonBrightness{Down,Up}
 
 # capture the entire screen
 Print
-    scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png' && \
+    maim ~/Pictures/screenshots/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor && \
     dunstify -a "Screenshot" -r "273685" "Screenshot captured" "screen saved to ~/Pictures/screenshots"
 
 # capture the current focus
 super + shift + Print
-    scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png' -u && \
+    maim ~/Pictures/screenshots/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor --window=$(xdotool getactivewindow) && \
     dunstify -a "Screenshot" -r "273685" "Screenshot captured" "focus saved to ~/Pictures/screenshots"
 
 # capture a select area
 super + Print
-    sleep 0.2; dunstify -a "Screenshot" -r "273685" "Select an area" && \
-    scrot ~/Pictures/screenshots/'%Y-%m-%d-%H%M%S.png' -sl style=dash && \
+    dunstify -a "Screenshot" -r "273685" "Select an area" && \
+    maim ~/Pictures/screenshots/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor --select && \
     dunstify -a "Screenshot" -r "273685" "Screenshot captured" "area saved to ~/Pictures/screenshots"
 
 ##################
