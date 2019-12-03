@@ -1,4 +1,4 @@
-# dotfiles
+# config
 
 Configuration files for my computer.
 
