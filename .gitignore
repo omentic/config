@@ -10,7 +10,6 @@
 !README.md
 !bash/
 !bspwm/
-!catfish/
 !dunst/
 !gtk-2.0/
 !gtk-3.0/
@@ -24,6 +23,7 @@
 !sxhkd/
 
 # blacklist the following files
+gtk-2.0/gtkfilechooser.ini
 micro/buffers
 nvim/plugged/*
 

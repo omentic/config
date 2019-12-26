@@ -9,26 +9,27 @@
 
 # show this help menu
 super + F1
-    ~/.config/scripts/show_help | rofi -dmenu -i -p hotkeys
+    ~/.config/scripts/hotkeys | rofi -dmenu -i -p hotkeys
 # todo: create separate help menus, break into mod + F#
-# move show_help out of the sxhkd folder - to scripts?
-# slim down my startpage so i actually use it
-# https://github.com/wangzme/cheeet
 
 # launch my password manager
 super + F2
     ~/.config/scripts/rofi-pass/rofi-pass
-# todo: eliminate overhead (and most of the python stuff)
+# todo: clean out rofi-pass and support password creation
 
-# run rofimoji
+# run rofimoji (a featureless alternative to gnome-characters)
 super + F3
     rofimoji
-# todo: decide on which function key to which function
 # note: rofimoji stays as a package because emojis update
+
+# show homework
+super + F4
+    cat ~/Documents/homework | grep . | tail -n +2 | rofi -dmenu -i -p homework
+# todo: make homework mark-doneable and editable
 
 # make sxhkd reload its configuration files
 super + Escape
-	pkill -USR1 -x sxhkd
+    pkill -USR1 -x sxhkd
 
 # launch a terminal
 super + Return
@@ -44,18 +45,22 @@ super + {_,shift + }@space
 
 # close window / kill application
 super + {w,q}
-	bspc node -{c,k}
+    bspc node -{c,k}
 
-# quit / restart bspwm
-super + shift + {q,r}
-	bspc {quit,wm -r}
+# launch xkill
+super + shift + q
+    xkill
+
+# restart / quit bspwm
+super + {_,shift + }r
+    bspc {wm -r,quit}
 
 # search home / search root
 super + {_,shift +} f
-	catfish --path={~,/}
+    catfish --path={~,/}
 
-# TODO: switch between recent nodes, but also run a popup script
-#super + {_,shift + }Tab
+# todo: switch between recent nodes, but also run a popup script
+# super + {_,shift + }Tab
 
 ##################
 ### multimedia ###
@@ -123,38 +128,38 @@ super + Print
 
 # focus the node in the given direction
 super + {Left,Down,Up,Right}
-	bspc node -f {west,south,north,east}
+    bspc node -f {west,south,north,east}
 
 # swap nodes in the given direction
 super + shift + {Left,Down,Up,Right}
-	bspc node -s {west,south,north,east}
+    bspc node -s {west,south,north,east}
 
 # workspace 10 is currently broken
 # focus or send to given desktop
 super + {_,shift + } {1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,0}'
+    bspc {desktop -f,node -d} '^{1-9,0}'
 
 # focus the node for the given path jump
 super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+    bspc node -f @{parent,brother,first,second}
 
 # focus the next / previous node
 super + {_,shift + }c
-	bspc node -f {next,prev}.local
+    bspc node -f {next,prev}.local
 
 # focus the next / previous desktop
 super + bracket{right,left}
-	bspc desktop -f {next,prev}.local
+    bspc desktop -f {next,prev}.local
 
 # send to the next / previous desktop
 super + shift + bracket{right,left}
-	bspc node -d {next,prev}.local
+    bspc node -d {next,prev}.local
 
 # focus the newer / older node in history
 super + {_,shift + }grave
-	bspc wm -h off; \
-	bspc node {newer,older} -f; \
-	bspc wm -h on
+    bspc wm -h off; \
+    bspc node {newer,older} -f; \
+    bspc wm -h on
 
 #################
 ### preselect ###
@@ -162,15 +167,15 @@ super + {_,shift + }grave
 
 # preselect the direction
 super + ctrl + {Left,Down,Up,Right}
-	bspc node -p {west,south,north,east}
+    bspc node -p {west,south,north,east}
 
 # preselect the ratio
 super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+    bspc node -o 0.{1-9}
 
 # cancel the focused node preselection
 super + ctrl + 0
-	bspc node -p cancel
+    bspc node -p cancel
 
 # do that again
 Escape
@@ -178,7 +183,7 @@ Escape
 
 # cancel the focused desktop preselection
 super + ctrl + shift + 0
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #####################
 ### move / resize ###
@@ -186,11 +191,11 @@ super + ctrl + shift + 0
 
 # expand a window by moving its side outward
 super + alt + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving its side inward
 super + alt + shift + {Left,Down,Up,Right}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 ########################
 ### additional notes ###
