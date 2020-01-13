@@ -33,7 +33,7 @@ super + Escape
 
 # launch a terminal
 super + Return
-    xfce4-terminal
+    kitty
 
 # lock screen
 super + BackSpace
