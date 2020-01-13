@@ -6,16 +6,11 @@
 # header #
 ##########
 
-# PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
+# PS1='\[\033[01;32m\][\u\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 # PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
-# PS1='\[\033[01;32m\][🜎 \W\[\033[01;32m\]]\$\[\033[00m\] '
-# PS1='\[\033[01;32m\][🜁 \W\[\033[01;32m\]]\$\[\033[00m\] '
 PS1='\[\033[01;32m\][🜃 \W\[\033[01;32m\]]\$\[\033[00m\] '
 
-# symbols
-# elemental: 🜁🜃🜂🜄
-# weather: ☀☼☁
-# phi: Φɸφϕ𝜙
+# symbols: 🜁🜃🜂🜄 🜎 Φɸφϕ𝜙
 
 #####################
 # set shell options #
@@ -31,6 +26,7 @@ shopt -s histappend
 ###########
 
 alias android-studio='~/Applications/android-studio/bin/studio.sh'
+alias background='feh --no-fehbg --bg-scale'
 alias bat='bat --pager="less -FR" --paging never'
 alias config='git -C $HOME/.config/'
 alias clean='sudo pacman -Rs $(pacman -Qqdt)'

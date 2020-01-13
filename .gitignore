@@ -13,13 +13,16 @@
 !dunst/
 !gtk-2.0/
 !gtk-3.0/
+!kitty/
 !Kvantum/
+!lemonbar/
 !micro/
 !nano/
 !nvim/
 !polybar/
 !ranger/
 !rofi/
+!scripts/
 !sxhkd/
 
 # blacklist the following files

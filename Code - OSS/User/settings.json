@@ -110,5 +110,6 @@
         "FAQ",
         "IDEA"
     ],
-    "workbench.colorTheme": "Eva Dark Bold"
+    "workbench.colorTheme": "Atom One Dark",
+    "explorer.compactFolders": false,
 }

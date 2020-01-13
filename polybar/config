@@ -46,7 +46,7 @@ type = internal/bspwm
 enable-click = true
 enable-scroll = true
 reverse-scroll = true
-label-focused-foreground = #FFFFFF
+label-focused-foreground = #888
 
 [module/network]
 type = internal/network
