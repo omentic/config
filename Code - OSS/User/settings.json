@@ -1,7 +1,6 @@
 {
     "java.home": "/usr/lib/jvm/default",
     "breadcrumbs.enabled": true,
-    "editor.insertSpaces": false,
     "editor.minimap.enabled": false,
     "editor.quickSuggestions": {
         "other": false,
