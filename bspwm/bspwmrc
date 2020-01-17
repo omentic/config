@@ -16,7 +16,7 @@ sxhkd &
 dunst &
 polybar pathfinder &
 # lemonbar -g x25 -b -f
-feh --randomize --bg-scale --no-fehbg ~/Pictures/backgrounds/* &
+feh --bg-scale --no-fehbg ~/Pictures/backgrounds/trees.jpg &
 xbacklight -set 50
 lxpolkit &
 
