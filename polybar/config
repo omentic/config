@@ -22,6 +22,7 @@ bottom = true
 
 background = #222
 foreground = #dfdfdf
+; background = #29353B
 
 font-0 = NotoSansMono:size=10
 font-1 = NotoSansSymbols2-Regular:size=10
@@ -60,7 +61,8 @@ label-disconnected = ethernet: disconnected |
 
 [module/wireless-network]
 inherit = module/network
-interface = wlp58s0
+; interface = wlp58s0
+interface = wlan0
 label-connected = wifi: %essid% |
 label-disconnected = wifi: disconnected |
 

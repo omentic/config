@@ -39,52 +39,52 @@
     "todo-tree.highlights.customHighlight": {
         "TODO": {
             "icon": "check",
-            "iconColour": "#16B085",    //  aquamarine
+            "iconColour": "#16B085", //  aquamarine
             "background": "green"
         },
         "FIXME": {
             "icon": "issue-opened",
-            "iconColour": "#FF2400",    //  scarlet
+            "iconColour": "#FF2400", //  scarlet
             "background": "#FF2400"
         },
         "XXX": {
             "icon": "star",
-            "iconColour": "#00BFFF",    //  skyblue
+            "iconColour": "#00BFFF", //  skyblue
             "background": "#00BFFF"
         },
         "DONE": {
             "icon": "checklist",
-            "iconColour": "#0038B8",    //  blue
+            "iconColour": "#0038B8", //  blue
             "background": "#0038B8"
         },
         "BUG": {
             "icon": "bug",
-            "iconColour": "#9400D3",    //  darkviolet
+            "iconColour": "#9400D3", //  darkviolet
             "background": "#9400D3"
         },
         "!!!": {
             "icon": "megaphone",
-            "iconColour": "#FF8C00",    //  darkorange
+            "iconColour": "#FF8C00", //  darkorange
             "background": "#FF8C00"
         },
         "HACK": {
             "icon": "report",
-            "iconColour": "#A52A2A",    //  brown
+            "iconColour": "#A52A2A", //  brown
             "background": "#A52A2A"
         },
         "NOTE": {
             "icon": "pencil",
-            "iconColour": "#696969",    //  dimgrey
+            "iconColour": "#696969", //  dimgrey
             "background": "#696969"
         },
         "FAQ": {
             "icon": "tasklist",
-            "iconColour": "#FF1493",    //  deeppink
+            "iconColour": "#FF1493", //  deeppink
             "background": "#FF1493"
         },
         "IDEA": {
             "icon": "light-bulb",
-            "iconColour": "#FFD700",    //  gold
+            "iconColour": "#FFD700", //  gold
             "background": "#FFD700"
         }
     },
@@ -96,7 +96,7 @@
         "background": "black"
     },
     "todo-tree.tree.expanded": true,
-    "todo-tree.regex.regex": "((@|//|#|<!--|;|/\\*|^)\\s*($TAGS)|^\\s*- \\[ ,\\])",
+    "todo-tree.regex.regex": "((@|//|#|<!--|;| * |/\\*|^)\\s*($TAGS)|^\\s*- \\[ ,\\])",
     "todo-tree.general.tags": [
         "TODO",
         "FIXME",
@@ -109,6 +109,6 @@
         "FAQ",
         "IDEA"
     ],
-    "workbench.colorTheme": "Atom One Dark",
     "explorer.compactFolders": false,
+    "workbench.colorTheme": "AdaptaNokto"
 }

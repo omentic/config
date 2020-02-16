@@ -13,7 +13,7 @@ export GOPATH="$HOME/.go"
 # default applications
 export BROWSER=/usr/bin/firefox
 export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/code
+export VISUAL=/usr/bin/nvim
 
 # PATH
 export PATH="$PATH:$HOME/Applications"
