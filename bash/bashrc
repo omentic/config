@@ -6,49 +6,80 @@
 # header #
 ##########
 
-# PS1='\[\033[01;32m\][\u\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+# symbols: 🜁🜃🜂🜄 🜎 Φɸφϕ𝜙
 # PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 PS1='\[\033[01;32m\][🜃 \W\[\033[01;32m\]]\$\[\033[00m\] '
 
-# symbols: 🜁🜃🜂🜄 🜎 Φɸφϕ𝜙
-
-#####################
-# set shell options #
-#####################
+#################
+# shell options #
+#################
 
 shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s complete_fullquote
 shopt -s expand_aliases
-shopt -s autocd
+shopt -s extglob
+shopt -s extquote
+shopt -s force_fignore
+shopt -s globasciiranges
 shopt -s histappend
+shopt -s interactive_comments
+shopt -s progcomp
+shopt -s promptvars
+shopt -s sourcepath
 
-###########
-# aliases #
-###########
+###############
+# definitions #
+###############
 
 alias android-studio='~/Applications/android-studio/bin/studio.sh'
-alias background='feh --no-fehbg --bg-scale'
-alias bat='bat --pager="less -FR" --paging never'
-alias config='git -C $HOME/.config/'
+alias config='git --git-dir=$HOME/.config/.git --work-tree=$HOME/.config'
+alias consoleds='consoleds --alliance-colour red --alliance-position 1 --team-number 4915'
 alias clean='sudo pacman -Rs $(pacman -Qqdt)'
-alias cp='cp -i'
-alias df='df -h'
-alias dril='fortune -o dril'
-alias grep='rg'
-alias homework='nvim ~/Documents/homework'
-alias ls='ls --color=auto'
-alias map='telnet mapscii.me'
-alias mocp='mocp --config ~/.config/moc/config'
+alias hw='nvim ~/Documents/homework'
 alias more='less'
-alias neovim='nvim'
+alias starwars='telnet towel.blinkenlights.nl'
+alias todo='nvim ~/Documents/todo'
+alias update='sudo pakku -Syyu'
+alias vim='nvim --noplugin'
+alias wallpaper='feh --no-fehbg --bg-scale'
+alias wd='wget --recursive --no-clobber --page-requisites --html-extension --convert-links --no-parent'
+alias worldmap='telnet mapscii.me'
+alias wttr='curl https://wttr.in/~Bainbridge+Island?q0'
+alias yt='youtube-dl --output "~/Videos/%(title)s-%(id)s.%(ext)s"'
+
+#################
+# abbreviations #
+#################
+
 alias nv='nvim'
 alias q='exit'
 alias rd='ranger'
+
+##############
+# expansions #
+##############
+
+# note recursion
+alias grep='rg'
+alias homework='hw'
+alias list='ls'
+alias neovim='nvim'
+alias pathname='pwd'
+alias quit='q'
+alias remove='rm'
+alias website-download='wd'
+alias weather='wttr'
+alias youtube='yt'
+
+#########
+# flags #
+#########
+
+alias bat='bat --pager="less -FR" --paging never'
+alias cp='cp -i'
+alias df='df -h'
+alias ls='ls --color=auto'
+alias mocp='mocp --config ~/.config/moc/config'
 alias rm='rm --interactive'
-alias starwars='telnet towel.blinkenlights.nl'
-alias todo='nvim ~/Documents/todo'
-alias update='sudo pacman -Syyu'
-alias vim='nvim --noplugin'
-alias weather='curl https://wttr.in/~Bainbridge+Island?q0'
-alias website='wget --recursive --no-clobber --page-requisites --html-extension --convert-links --no-parent'
-alias yt='youtube-dl -o "~/Videos/%(title)s-%(id)s.%(ext)s"'
 
