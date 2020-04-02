@@ -46,8 +46,9 @@ bspc config pointer_follows_monitor true
 ### open applications with specific conditions ###
 ##################################################
 
-bspc rule -a Org.gnome.Characters state=floating
-bspc rule -a mpv state=floating rectangle=150x150+1746+8
+# bspc rule -a mpv state=floating rectangle=150x150+1746+8
+bspc rule -a mpv state=floating rectangle=1872x1007+16+16
+
 # bspc rule -a URxvt state=floating
 # bspc rule -a Gimp desktop='^8' state=floating follow=on
 # bspc rule -a Firefox desktop='^2'

@@ -1,5 +1,7 @@
-" teal's custom neovim configuration file
-" a refactored extension of vim
+"==============================================
+"== teal's custom neovim configuration file ===
+"==      a refactored extension of vim      ===
+"==============================================
 
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -48,8 +50,9 @@ syntax on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set expandtab
 " note: vim-sleuth is in charge of picking tabs or spaces based on context
-" by default tabs are used
+" by default spaces are used
 
 " end files with a newline
 set listchars=eol:$
