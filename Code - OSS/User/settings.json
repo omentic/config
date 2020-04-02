@@ -109,6 +109,6 @@
         "FAQ",
         "IDEA"
     ],
-    "explorer.compactFolders": false,
-    "workbench.colorTheme": "AdaptaNokto"
+    "workbench.colorTheme": "AdaptaNokto",
+    "zenMode.hideTabs": false
 }

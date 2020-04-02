@@ -65,14 +65,15 @@ inherit = module/network
 interface = wlan0
 label-connected = wifi: %essid% |
 label-disconnected = wifi: disconnected |
+click-left = kitty wifi toggle
 
 [module/updates]
 type = custom/script
-#exec = pamac checkupdates | head -n 1 | rev | cut -c 2- | rev
-exec = UPDATES=$(pamac checkupdates -q | wc -l); if [ $UPDATES == 0 ]; then echo ""; else echo "updates: $UPDATES available packages |"; fi
+# redirects stderr to /dev/null
+exec = UPDATES=$(checkupdates 2>/dev/null | wc -l); if [ $UPDATES == 0 ]; then echo ""; else echo "updates: $UPDATES available packages |"; fi
 interval = 600
 label = %output%
-click-left = xfce4-terminal -x pamac update
+click-left = kitty sudo pakku -Syyu
 
 [module/pulseaudio]
 type = internal/pulseaudio

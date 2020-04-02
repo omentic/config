@@ -9,12 +9,12 @@
 
 # show this help menu
 super + F1
-    ~/.config/scripts/hotkeys | rofi -dmenu -i -p hotkeys
+    sh ~/Projects/scripts/hotkeys.sh | rofi -dmenu -i -p hotkeys
 # todo: create separate help menus, break into mod + F#
 
 # launch my password manager
 super + F2
-    ~/.config/scripts/rofi-pass/rofi-pass
+    ~/.config/rofi-pass/rofi-pass
 # todo: clean out rofi-pass and support password creation
 
 # run rofimoji (a featureless alternative to gnome-characters)
@@ -40,7 +40,7 @@ super + BackSpace
     xsecurelock
 
 # application launcher / window switcher
-super + {_,shift + }@space
+super + {_,shift + }space
     rofi -show {drun,window} -i
 
 # close window / kill application
@@ -160,6 +160,9 @@ super + {_,shift + }grave
     bspc wm -h off; \
     bspc node {newer,older} -f; \
     bspc wm -h on
+
+super + {_,shift + }Tab
+    bspc desktop -f {next,prev}.local
 
 #################
 ### preselect ###
