@@ -12,15 +12,15 @@
 !bspwm/
 !dunst/
 !firefox/
-!gtk-2.0/
+!gtk-2.0/gtkrc-2.0
 !gtk-3.0/
 !kitty/
 !Kvantum/
 !lemonbar/
 !micro/
-!moc/
+!moc/config
 !nano/
-!nvim/
+!nvim/init.vim
 !polybar/
 !ranger/
 !rofi/
@@ -28,9 +28,7 @@
 !sxhkd/
 
 # blacklist the following files
-gtk-2.0/gtkfilechooser.ini
 micro/buffers
-nvim/plugged/*
 
 # apply settings to include specific files
 !Code\ -\ OSS/
