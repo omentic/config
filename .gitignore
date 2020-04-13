@@ -5,11 +5,16 @@
 # blacklist all files
 /*
 
-# whitelist the following files
+# whitelist the following special files
 !.gitignore
 !README.md
+!LICENSE
+
+# whitelist the following files / folders
 !bash/
 !bspwm/
+!Code\ -\ OSS/User/keybindings.json
+!Code\ -\ OSS/User/settings.json
 !dunst/
 !firefox/
 !gtk-2.0/gtkrc-2.0
@@ -17,7 +22,8 @@
 !kitty/
 !Kvantum/
 !lemonbar/
-!micro/
+!micro/colorschemes/
+!micro/settings.json
 !moc/config
 !nvim/init.vim
 !polybar/
@@ -26,13 +32,3 @@
 !scripts/
 !sxhkd/
 
-# blacklist the following files
-micro/buffers
-
-# apply settings to include specific files
-!Code\ -\ OSS/
-Code\ -\ OSS/*
-!Code\ -\ OSS/User/
-Code\ -\ OSS/User/*
-!Code\ -\ OSS/User/keybindings.json
-!Code\ -\ OSS/User/settings.json
