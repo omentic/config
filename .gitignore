@@ -19,7 +19,6 @@
 !lemonbar/
 !micro/
 !moc/config
-!nano/
 !nvim/init.vim
 !polybar/
 !ranger/
