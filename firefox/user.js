@@ -46,3 +46,5 @@ user_pref("security.secure_connection_icon_color_gray", false);
 user_pref("devtools.theme", "dark");
 user_pref("ui.systemUsesDarkTheme", 1);
 
+// Disable ugly expanding search bar
+user_pref("browser.urlbar.update1", false);
