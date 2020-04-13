@@ -200,6 +200,89 @@ super + alt + {Left,Down,Up,Right}
 super + alt + shift + {Left,Down,Up,Right}
     bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
+#######################
+### notes on pacman ###
+#######################
+
+##################
+# search options #
+##################
+
+# install a package and its dependencies
+pacman -S
+
+# refresh mirrors and update packages
+pacman -Syu
+
+# force refresh mirrors and update packages
+pacman -Syyu
+
+# search the package database for your query
+pacman -Ss
+
+# view package info
+pacman -Si
+
+# clean package cache
+pacman -Scc
+
+###################
+# removal options #
+###################
+
+# remove a package
+pacman -R
+
+# remove a package and its dependencies
+pacman -Rs
+
+# remove a package and all dependents
+pacman -Rc
+
+# remove all orphans
+pacman -Rs $(pacman -Qqdt)
+
+#################
+# query options #
+#################
+
+# list local packages
+pacman -Q
+
+# list explicitly installed packages
+pacman -Qe
+
+# list dependently installed packages
+pacman -Qd
+
+# list foreign packages
+pacman -Qm
+
+# list orphans
+pacman -Qdt
+
+# search local packages
+pacman -Qs
+
+# view local package info
+pacman -Qi
+
+# locate the owner of a specific file
+pacman -Qo
+
+####################
+# database options #
+####################
+
+# mark a package as explicitly installed
+pacman -D --asexplicit
+
+# mark a package as dependently installed
+pacman -D --asdeps
+
+# passing -q to (almost) any operation will show less information
+# passing -h to any operation will return a tldr of that operation
+
 ########################
 ### additional notes ###
 ########################
@@ -207,5 +290,6 @@ super + alt + shift + {Left,Down,Up,Right}
 # insert special characters (altgr-intl)
 altgr + key
 
-# project to a display
-xrandr; xrandr --output DISPLAY_NAME --auto
+# project to a display (after xrandr)
+xrandr --output DISPLAY_NAME --auto
+

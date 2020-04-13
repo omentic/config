@@ -11,7 +11,7 @@
 ### daemonize startup processes ###
 ###################################
 
-killall -q sxhkd dunst lemonbar polybar
+killall -q sxhkd dunst lemonbar polybar spotifyd
 sxhkd &
 dunst &
 polybar pathfinder &
@@ -19,6 +19,7 @@ polybar pathfinder &
 feh --bg-scale --no-fehbg ~/Pictures/backgrounds/trees.jpg &
 xbacklight -set 50
 lxpolkit &
+spotifyd
 
 ################################################
 ### configure window manager characteristics ###
