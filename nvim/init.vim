@@ -50,9 +50,9 @@ syntax on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
-" note: vim-sleuth is in charge of picking tabs or spaces based on context
-" by default spaces are used
+
+" note: vim-sleuth picks tabs / spaces based on context
+" but defaults to tabs (change to spaces by setting expandtab)
 
 " end files with a newline
 set listchars=eol:$

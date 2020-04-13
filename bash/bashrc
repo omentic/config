@@ -28,40 +28,45 @@ shopt -s progcomp
 shopt -s promptvars
 shopt -s sourcepath
 
+set -o noclobber
+
 ###############
 # definitions #
 ###############
 
-alias android-studio='~/Applications/android-studio/bin/studio.sh'
+alias bat='bat --pager="less -FR" --paging never'
 alias config='git --git-dir=$HOME/.config/.git --work-tree=$HOME/.config'
 alias consoleds='consoleds --alliance-colour red --alliance-position 1 --team-number 4915'
-alias clean='sudo pacman -Rs $(pacman -Qqdt)'
-alias hw='nvim ~/Documents/homework'
+alias cp='cp -i'
+alias df='df -h'
 alias link='ln'
+alias ls='ls --color=auto'
+alias mocp='mocp --config ~/.config/moc/config'
 alias more='less'
-alias pacman-local='pakku -Qq'
-alias pacman-origin='pakku -Ssq'
-alias pacman-preview='fzf --preview "pakku -Si {}" --layout=reverse'
-alias pacman-preview-local='fzf --preview "pakku -Qil {}" --layout=reverse'
+alias prepac='pakku -Ssq | fzf --preview "pakku -Si {}" --layout=reverse'
+alias prepac-local='pakku -Qq | fzf --preview "pakku -Qil {}" --layout=reverse'
+alias rm='rm --interactive'
 alias starwars='telnet towel.blinkenlights.nl'
-alias todo='nvim ~/Documents/todo'
-alias update='sudo pakku -Syyu'
+alias todo='nvim ~/Documents/todo.md'
 alias vim='nvim --noplugin'
 alias wallpaper='feh --no-fehbg --bg-scale'
-alias wd='wget --recursive --no-clobber --page-requisites --html-extension --convert-links --no-parent'
-alias wifi-connect='nmcli device wifi connect --ask'
-alias wifi-list='nmcli device wifi list'
 alias worldmap='telnet mapscii.me'
-alias wttr='curl https://wttr.in/~Bainbridge+Island?q0'
-alias yt='youtube-dl --output "~/Videos/%(title)s-%(id)s.%(ext)s"'
 
 #################
 # abbreviations #
 #################
 
+alias cds='consoleds'
+alias md='micro'
 alias nv='nvim'
 alias q='exit'
 alias rd='ranger'
+alias wd='wget --recursive --no-clobber --page-requisites --html-extension --convert-links --no-parent'
+alias wici='nmcli device wifi connect --ask'
+alias wili='nmcli device wifi list'
+alias wp='feh --no-fehbg --bg-scale'
+alias wttr='curl https://wttr.in/~Bainbridge+Island?q0'
+alias yt='youtube-dl --output "~/Videos/%(title)s-%(id)s.%(ext)s"'
 
 ##############
 # expansions #
@@ -69,8 +74,6 @@ alias rd='ranger'
 
 # note recursion
 alias copy='cp'
-alias grep='rg'
-alias homework='hw'
 alias list='ls'
 alias manual='man'
 alias move='mv'
@@ -83,15 +86,4 @@ alias spotify-tui='spt'
 alias website-download='wd'
 alias weather='wttr'
 alias youtube='yt'
-
-#########
-# flags #
-#########
-
-alias bat='bat --pager="less -FR" --paging never'
-alias cp='cp -i'
-alias df='df -h'
-alias ls='ls --color=auto'
-alias mocp='mocp --config ~/.config/moc/config'
-alias rm='rm --interactive'
 

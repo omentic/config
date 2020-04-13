@@ -1,6 +1,7 @@
 {
     "java.home": "/usr/lib/jvm/default",
     "breadcrumbs.enabled": true,
+    "editor.insertSpaces": false,
     "editor.minimap.enabled": false,
     "editor.quickSuggestions": {
         "other": false,
@@ -9,6 +10,7 @@
     },
     "editor.selectionClipboard": false,
     "editor.suggestSelection": "first",
+    "editor.tabSize": 4,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "files.exclude": {
@@ -27,15 +29,12 @@
     "window.zoomLevel": 1,
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "none",
-    "dart.allowAnalytics": false,
-    "dart.flutterHotRestartOnSave": true,
     "go.autocompleteUnimportedPackages": true,
     "go.useLanguageServer": true,
     "java.configuration.checkProjectSettingsExclusions": false,
     "java.errors.incompleteClasspath.severity": "ignore",
     "python.jediEnabled": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "latex-workshop.view.pdf.viewer": "tab",
     "todo-tree.highlights.customHighlight": {
         "TODO": {
             "icon": "check",
@@ -109,6 +108,6 @@
         "FAQ",
         "IDEA"
     ],
-    "workbench.colorTheme": "AdaptaNokto",
-    "zenMode.hideTabs": false
+    "zenMode.hideTabs": false,
+    "workbench.colorTheme": "AdaptaNokto"
 }
