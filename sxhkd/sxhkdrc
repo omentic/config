@@ -9,7 +9,7 @@
 
 # show this help menu
 super + F1
-    sh ~/Projects/scripts/hotkeys.sh | rofi -dmenu -i -p hotkeys
+	sh ~/Projects/scripts/hotkeys.sh | rofi -dmenu -i -p hotkeys
 # todo: create separate help menus, break into mod + F#
 
 # launch my password manager
@@ -18,35 +18,35 @@ super + F1
 
 # run rofimoji (a featureless character picker)
 super + F3
-    rofimoji
+	rofimoji
 
 # make sxhkd reload its configuration files
 super + Escape
-    pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd
 
 # launch a terminal
 super + Return
-    kitty
+	kitty
 
 # lock screen
 super + BackSpace
-    xsecurelock
+	xsecurelock
 
 # application launcher / window switcher
 super + {_,shift + }space
-    rofi -i -show {drun,window}
+	rofi -i -show {drun,window}
 
 # close window / kill application
 super + {w,q}
-    bspc node -{c,k}
+	bspc node -{c,k}
 
 # launch xkill
 super + shift + q
-    xkill
+	xkill
 
 # restart / quit bspwm
 super + {_,shift + }r
-    bspc {wm -r,quit}
+	bspc {wm -r,quit}
 
 ###################################
 ### multimedia keyboard symbols ###
@@ -56,55 +56,55 @@ super + {_,shift + }r
 
 # mute / lower / raise volume
 XF86Audio{Mute,LowerVolume,RaiseVolume}
-    pactl set-sink-{mute 0 toggle,volume 0 -5%,volume 0 +5%} && \
-    dunstify -a "Volume" -u low -r "865863" "Volume: $(pulsemixer --get-volume | sed 's/ .*//')%" \
-    "$(if [[ $(pulsemixer --get-mute) == 1 ]]; then echo 'mute'; else echo ''; fi)"
+	pactl set-sink-{mute 0 toggle,volume 0 -5%,volume 0 +5%} && \
+	dunstify -a "Volume" -u low -r "865863" "Volume: $(pulsemixer --get-volume | sed 's/ .*//')%" \
+	"$(if [[ $(pulsemixer --get-mute) == 1 ]]; then echo 'mute'; else echo ''; fi)"
 
 # rewind track
 XF86AudioPrev
-    playerctl previous || mocp --previous
+	playerctl previous || mocp --previous
 
 # toggle play-pause of track
 XF86AudioPlay
-    playerctl play-pause || mocp --toggle-pause
+	playerctl play-pause || mocp --toggle-pause
 
 # skip track
 XF86AudioNext
-    playerctl next || mocp --next
+	playerctl next || mocp --next
 
 # seek backwards by five seconds
 shift + XF86AudioPrev
-    playerctl position 5 - || mocp --seek -5
+	playerctl position 5 - || mocp --seek -5
 
 # seek forwards by five seconds
 shift + XF86AudioNext
-    playerctl position 5 + || mocp --seek 5
+	playerctl position 5 + || mocp --seek 5
 
 # search home / search root
 # {_,shift+ }XF86Search
-#    catfish --path={~,/}
+# 	catfish --path={~,/}
 # todo: fzf + fd
 
 # control the screen brightness
 XF86MonBrightness{Down,Up}
-    xbacklight {-dec 10,-inc 10} && \
-    dunstify -u low -a "Backlight" -r "21311" "Backlight: $(xbacklight -get | sed 's/\..*//')%"
+	xbacklight {-dec 10,-inc 10} && \
+	dunstify -u low -a "Backlight" -r "21311" "Backlight: $(xbacklight -get | sed 's/\..*//')%"
 
 # capture the entire screen
 Print
-    maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor & \
-    dunstify -a "Screenshot" -r "131913" "Screenshot captured" "screen saved to ~/Pictures/screenshots"
+	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -u & \
+	dunstify -a "Screenshot" -r "131913" "Screenshot captured" "screen saved to ~/Pictures/screenshots/$(date +%Y)"
 
 # capture the current focus
 super + shift + Print
-    maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor --window=$(xdotool getactivewindow) & \
-    dunstify -a "Screenshot" -r "131913" "Screenshot captured" "focus saved to ~/Pictures/screenshots"
+	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -u -i $(xdotool getactivewindow) & \
+	dunstify -a "Screenshot" -r "131913" "Screenshot captured" "focus saved to ~/Pictures/screenshots/$(date +%Y)"
 
 # capture a select area
 super + Print
-    dunstify -a "Screenshot" -r "131913" "Select an area" && \
-    maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor --select && \
-    dunstify -a "Screenshot" -r "131913" "Screenshot captured" "area saved to ~/Pictures/screenshots"
+	dunstify -a "Screenshot" -r "131913" "Select an area" && \
+	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -u -s && \
+	dunstify -a "Screenshot" -r "131913" "Screenshot captured" "area saved to ~/Pictures/screenshots/$(date +%Y)"
 
 ###############################
 ### focus/swap bspwm leaves ###
@@ -112,41 +112,41 @@ super + Print
 
 # focus the node in the given direction
 super + {h,j,k,l}
-    bspc node -f {west,south,north,east}
+	bspc node -f {west,south,north,east}
 super + {Left,Down,Up,Right}
-    bspc node -f {west,south,north,east}
+	bspc node -f {west,south,north,east}
 
 # swap nodes in the given direction
 super + shift + {h,j,k,l}
-    bspc node -s {west,south,north,east}
+	bspc node -s {west,south,north,east}
 super + shift + {Left,Down,Up,Right}
-    bspc node -s {west,south,north,east}
+	bspc node -s {west,south,north,east}
 
 # focus / send to given desktop
 super + {_,shift + }{1-9,0}
-    bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '^{1-9,10}'
 
 # focus the node for the given path jump
 super + {p,b,comma,period}
-    bspc node -f @{parent,brother,first,second}
+	bspc node -f @{parent,brother,first,second}
 
 # focus the next / previous node
 super + {_,shift + }c
-    bspc node -f {next,prev}.local
+	bspc node -f {next,prev}.local
 
 # focus the next / previous desktop
 super + bracket{right,left}
-    bspc desktop -f {next,prev}.local
+	bspc desktop -f {next,prev}.local
 
 # send to the next / previous desktop
 super + shift + bracket{right,left}
-    bspc node -d {next,prev}.local
+	bspc node -d {next,prev}.local
 
 # focus the newer / older node in history
 super + {_,shift + }Tab
-    bspc wm -h off; \
-    bspc node {newer,older} -f; \
-    bspc wm -h on
+	bspc wm -h off; \
+	bspc node {newer,older} -f; \
+	bspc wm -h on
 
 #######################################
 ### preselect aspects of new leaves ###
@@ -154,23 +154,23 @@ super + {_,shift + }Tab
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
-    bspc node -p {west,south,north,east}
+	bspc node -p {west,south,north,east}
 super + ctrl + {Left,Down,Up,Right}
-    bspc node -p {west,south,north,east}
+	bspc node -p {west,south,north,east}
 
 # preselect the ratio
 super + ctrl + {1-9}
-    bspc node -o 0.{1-9}
+	bspc node -o 0.{1-9}
 
 # cancel the focused node preselection
 super + ctrl + {0,Escape}
-    bspc node -p cancel
+	bspc node -p cancel
 Escape
-    bspc node -p cancel
+	bspc node -p cancel
 
 # cancel the focused desktop preselection
 super + ctrl + shift + 0
-    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 ##################################
 ### move / resize bspwm leaves ###
@@ -178,15 +178,15 @@ super + ctrl + shift + 0
 
 # expand a window by moving its side outward
 super + alt + {h,j,k,l}
-    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 super + alt + {Left,Down,Up,Right}
-    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving its side inward
 super + alt + shift + {h,j,k,l}
-    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 super + alt + shift + {Left,Down,Up,Right}
-    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 #####################
 ### special notes ###
@@ -197,4 +197,3 @@ altgr + key
 
 # project to a display (after xrandr)
 xrandr --output DISPLAY_NAME --auto
-

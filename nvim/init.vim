@@ -1,6 +1,6 @@
 "==============================================
 "== teal's custom neovim configuration file ===
-"==      a refactored extension of vim      ===
+"==             vim, but better             ===
 "==============================================
 
 " auto-install vim-plug
@@ -25,7 +25,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'https://github.com/tpope/vim-sleuth.git'
 	Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 	" Plug 'https://github.com/tpope/vim-eunuch.git'
-	" Plug 'https://github.com/tpope/vim-surround.git'	
+	" Plug 'https://github.com/tpope/vim-surround.git'
 	" Plug 'https://github.com/tpope/vim-vinegar.git'
 	" Plug 'https://github.com/scrooloose/nerdtree.git'
 
@@ -68,4 +68,3 @@ nnoremap ; :
 
 " don't save netrw history
 let g:netrw_dirhistmax=0
-
