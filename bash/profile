@@ -28,6 +28,6 @@ export PATH="$PATH:$HOME/Applications/scripts"
 export PATH="$PATH:$HOME/Applications/android-studio/bin"
 export PATH="$PATH:$HOME/Applications/android-sdk/platform-tools"
 export PATH="$PATH:$HOME/Applications/flutter/bin"
-export PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
+export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 

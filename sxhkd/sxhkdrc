@@ -13,19 +13,12 @@ super + F1
 # todo: create separate help menus, break into mod + F#
 
 # launch my password manager
-super + F2
-    ~/.config/rofi-pass/rofi-pass
-# todo: clean out rofi-pass and support password creation
+# super + F2
+#    ~/.config/rofi-pass/rofi-pass
 
-# run rofimoji (a featureless alternative to gnome-characters)
+# run rofimoji (a featureless character picker)
 super + F3
     rofimoji
-# note: rofimoji stays as a package because emojis update
-
-# show homework
-super + F4
-    cat ~/Documents/homework | grep . | tail -n +2 | rofi -dmenu -i -p homework
-# todo: make homework mark-doneable and editable
 
 # make sxhkd reload its configuration files
 super + Escape
@@ -41,7 +34,7 @@ super + BackSpace
 
 # application launcher / window switcher
 super + {_,shift + }space
-    rofi -show {drun,window} -i
+    rofi -i -show {drun,window}
 
 # close window / kill application
 super + {w,q}
@@ -55,16 +48,11 @@ super + shift + q
 super + {_,shift + }r
     bspc {wm -r,quit}
 
-# search home / search root
-super + {_,shift +} f
-    catfish --path={~,/}
+###################################
+### multimedia keyboard symbols ###
+###################################
 
-# todo: switch between recent nodes, but also run a popup script
-# super + {_,shift + }Tab
-
-##################
-### multimedia ###
-##################
+# http://wiki.linuxquestions.org/wiki/XF86_keyboard_symbols
 
 # mute / lower / raise volume
 XF86Audio{Mute,LowerVolume,RaiseVolume}
@@ -74,70 +62,69 @@ XF86Audio{Mute,LowerVolume,RaiseVolume}
 
 # rewind track
 XF86AudioPrev
-    playerctl previous || \
-    mocp --previous
+    playerctl previous || mocp --previous
 
 # toggle play-pause of track
 XF86AudioPlay
-    playerctl play-pause || \
-    mocp --toggle-pause
+    playerctl play-pause || mocp --toggle-pause
 
 # skip track
 XF86AudioNext
-    playerctl next || \
-    mocp --next
+    playerctl next || mocp --next
 
 # seek backwards by five seconds
 shift + XF86AudioPrev
-    playerctl position 5 - || \
-    mocp --seek -5
+    playerctl position 5 - || mocp --seek -5
 
 # seek forwards by five seconds
 shift + XF86AudioNext
-    playerctl position 5 + || \
-    mocp --seek 5
+    playerctl position 5 + || mocp --seek 5
 
 # search home / search root
-{_,shift+ }XF86Search
-    catfish --path={~,/}
+# {_,shift+ }XF86Search
+#    catfish --path={~,/}
+# todo: fzf + fd
 
 # control the screen brightness
 XF86MonBrightness{Down,Up}
     xbacklight {-dec 10,-inc 10} && \
-    dunstify -a "Backlight" -u low -r "954448" "Backlight: $(xbacklight -get | sed 's/\..*//')%"
+    dunstify -u low -a "Backlight" -r "21311" "Backlight: $(xbacklight -get | sed 's/\..*//')%"
 
 # capture the entire screen
 Print
-    maim ~/Pictures/screenshots/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor && \
-    dunstify -a "Screenshot" -r "273685" "Screenshot captured" "screen saved to ~/Pictures/screenshots"
+    maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor & \
+    dunstify -a "Screenshot" -r "131913" "Screenshot captured" "screen saved to ~/Pictures/screenshots"
 
 # capture the current focus
 super + shift + Print
-    maim ~/Pictures/screenshots/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor --window=$(xdotool getactivewindow) && \
-    dunstify -a "Screenshot" -r "273685" "Screenshot captured" "focus saved to ~/Pictures/screenshots"
+    maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor --window=$(xdotool getactivewindow) & \
+    dunstify -a "Screenshot" -r "131913" "Screenshot captured" "focus saved to ~/Pictures/screenshots"
 
 # capture a select area
 super + Print
-    dunstify -a "Screenshot" -r "273685" "Select an area" && \
-    maim ~/Pictures/screenshots/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor --select && \
-    dunstify -a "Screenshot" -r "273685" "Screenshot captured" "area saved to ~/Pictures/screenshots"
+    dunstify -a "Screenshot" -r "131913" "Select an area" && \
+    maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) --hidecursor --select && \
+    dunstify -a "Screenshot" -r "131913" "Screenshot captured" "area saved to ~/Pictures/screenshots"
 
-##################
-### focus/swap ###
-##################
+###############################
+### focus/swap bspwm leaves ###
+###############################
 
 # focus the node in the given direction
+super + {h,j,k,l}
+    bspc node -f {west,south,north,east}
 super + {Left,Down,Up,Right}
     bspc node -f {west,south,north,east}
 
 # swap nodes in the given direction
+super + shift + {h,j,k,l}
+    bspc node -s {west,south,north,east}
 super + shift + {Left,Down,Up,Right}
     bspc node -s {west,south,north,east}
 
-# workspace 10 is currently broken
-# focus or send to given desktop
-super + {_,shift + } {1-9,0}
-    bspc {desktop -f,node -d} '^{1-9,0}'
+# focus / send to given desktop
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}'
 
 # focus the node for the given path jump
 super + {p,b,comma,period}
@@ -156,19 +143,18 @@ super + shift + bracket{right,left}
     bspc node -d {next,prev}.local
 
 # focus the newer / older node in history
-super + {_,shift + }grave
+super + {_,shift + }Tab
     bspc wm -h off; \
     bspc node {newer,older} -f; \
     bspc wm -h on
 
-super + {_,shift + }Tab
-    bspc desktop -f {next,prev}.local
-
-#################
-### preselect ###
-#################
+#######################################
+### preselect aspects of new leaves ###
+#######################################
 
 # preselect the direction
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
 super + ctrl + {Left,Down,Up,Right}
     bspc node -p {west,south,north,east}
 
@@ -177,10 +163,8 @@ super + ctrl + {1-9}
     bspc node -o 0.{1-9}
 
 # cancel the focused node preselection
-super + ctrl + 0
+super + ctrl + {0,Escape}
     bspc node -p cancel
-
-# do that again
 Escape
     bspc node -p cancel
 
@@ -188,104 +172,25 @@ Escape
 super + ctrl + shift + 0
     bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-#####################
-### move / resize ###
-#####################
+##################################
+### move / resize bspwm leaves ###
+##################################
 
 # expand a window by moving its side outward
+super + alt + {h,j,k,l}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 super + alt + {Left,Down,Up,Right}
     bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving its side inward
+super + alt + shift + {h,j,k,l}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 super + alt + shift + {Left,Down,Up,Right}
     bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-#######################
-### notes on pacman ###
-#######################
-
-##################
-# search options #
-##################
-
-# install a package and its dependencies
-pacman -S
-
-# refresh mirrors and update packages
-pacman -Syu
-
-# force refresh mirrors and update packages
-pacman -Syyu
-
-# search the package database for your query
-pacman -Ss
-
-# view package info
-pacman -Si
-
-# clean package cache
-pacman -Scc
-
-###################
-# removal options #
-###################
-
-# remove a package
-pacman -R
-
-# remove a package and its dependencies
-pacman -Rs
-
-# remove a package and all dependents
-pacman -Rc
-
-# remove all orphans
-pacman -Rs $(pacman -Qqdt)
-
-#################
-# query options #
-#################
-
-# list local packages
-pacman -Q
-
-# list explicitly installed packages
-pacman -Qe
-
-# list dependently installed packages
-pacman -Qd
-
-# list foreign packages
-pacman -Qm
-
-# list orphans
-pacman -Qdt
-
-# search local packages
-pacman -Qs
-
-# view local package info
-pacman -Qi
-
-# locate the owner of a specific file
-pacman -Qo
-
-####################
-# database options #
-####################
-
-# mark a package as explicitly installed
-pacman -D --asexplicit
-
-# mark a package as dependently installed
-pacman -D --asdeps
-
-# passing -q to (almost) any operation will show less information
-# passing -h to any operation will return a tldr of that operation
-
-########################
-### additional notes ###
-########################
+#####################
+### special notes ###
+#####################
 
 # insert special characters (altgr-intl)
 altgr + key

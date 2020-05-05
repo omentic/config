@@ -1,11 +1,7 @@
-#! /bin/sh
-
 #######################################
 ### teal's bspwm configuration file ###
 ###     a tiling window manager     ###
 #######################################
-
-# https://github.com/addy-dclxvi/void-bspwm-dotfiles - random colorschemes (!)
 
 ###################################
 ### daemonize startup processes ###
@@ -19,7 +15,7 @@ polybar pathfinder &
 feh --bg-scale --no-fehbg ~/Pictures/backgrounds/trees.jpg &
 xbacklight -set 50
 lxpolkit &
-spotifyd
+# spotifyd
 
 ################################################
 ### configure window manager characteristics ###
@@ -50,9 +46,3 @@ bspc config pointer_follows_monitor true
 # bspc rule -a mpv state=floating rectangle=150x150+1746+8
 bspc rule -a mpv state=floating rectangle=1872x1007+16+16
 
-# bspc rule -a URxvt state=floating
-# bspc rule -a Gimp desktop='^8' state=floating follow=on
-# bspc rule -a Firefox desktop='^2'
-# bspc rule -a mplayer2 state=floating
-# bspc rule -a Kupfer.py focus=on
-# bspc rule -a Screenkey manage=off
