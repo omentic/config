@@ -1,21 +1,27 @@
-#
-# ~/.bash_profile
-#
+#######################
+### ~/.bash_profile ###
+#######################
 
-# manjaro
-export QT_QPA_PLATFORMTHEME="qt5ct"
+#############
+# locations #
+#############
 
-# locations
 export XDG_CONFIG_HOME="$HOME/.config"
 export ANDROID_HOME="$HOME/Applications/android-sdk"
 export GOPATH="$HOME/.go"
 
-# default applications
+################
+# applications #
+################
+
 export BROWSER=/usr/bin/firefox
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 
-# PATH
+########
+# PATH #
+########
+
 export PATH="$PATH:$HOME/Applications"
 export PATH="$PATH:$HOME/Applications/scripts"
 export PATH="$PATH:$HOME/Applications/android-studio/bin"

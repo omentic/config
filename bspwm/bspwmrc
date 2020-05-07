@@ -1,11 +1,13 @@
+#! /bin/sh
+
 #######################################
 ### teal's bspwm configuration file ###
 ###     a tiling window manager     ###
 #######################################
 
-###################################
-### daemonize startup processes ###
-###################################
+###############################
+# daemonize startup processes #
+###############################
 
 killall -q sxhkd dunst lemonbar polybar spotifyd
 sxhkd &
@@ -17,9 +19,9 @@ xbacklight -set 50
 lxpolkit &
 # spotifyd
 
-################################################
-### configure window manager characteristics ###
-################################################
+############################################
+# configure window manager characteristics #
+############################################
 
 # create ten workspaces
 bspc monitor -d I II III IV V VI VII IIX IX X
@@ -39,9 +41,9 @@ bspc config click_to_focus			true
 bspc config focus_follows_pointer	true
 bspc config pointer_follows_monitor	true
 
-##################################################
-### open applications with specific conditions ###
-##################################################
+##############################################
+# open applications with specific conditions #
+##############################################
 
 # bspc rule -a mpv state=floating rectangle=150x150+1746+8
 bspc rule -a mpv state=floating rectangle=1872x1007+16+16

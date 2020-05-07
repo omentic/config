@@ -1,0 +1,8 @@
+#########################################
+### teal's berrywm configuration file ###
+###     a floating window manager     ###
+#########################################
+
+sxhkd &
+polybar pathfinder &
+feh --bg-scale --no-fehbg ~/Pictures/backgrounds/trees.jpg &
