@@ -34,15 +34,17 @@ set -o noclobber
 # definitions #
 ###############
 
-alias bat='bat --pager="less -FR" --paging never'
+alias bat='bat --paging never --color always'
 alias config='git --git-dir=$HOME/.config/.git --work-tree=$HOME/.config'
 alias consoleds='consoleds --alliance-colour red --alliance-position 1 --team-number 4915'
 alias cp='cp -i'
 alias df='df -h'
+alias less='less -FR'
 alias link='ln'
 alias ls='ls --color=auto'
 alias mocp='mocp --config ~/.config/moc/config'
 alias more='less'
+alias neofetch='neofetch --kitty ~/Pictures/backgrounds/trees.jpg'
 alias prepac='pakku -Ssq | fzf --preview "pakku -Si {}" --layout=reverse'
 alias prepac-local='pakku -Qq | fzf --preview "pakku -Qil {}" --layout=reverse'
 alias rm='rm --interactive'
@@ -67,22 +69,3 @@ alias wili='nmcli device wifi list'
 alias wp='feh --no-fehbg --bg-scale'
 alias wttr='curl https://wttr.in/~Bainbridge+Island?q0'
 alias yt='youtube-dl --output "~/Videos/%(title)s-%(id)s.%(ext)s"'
-
-##############
-# expansions #
-##############
-
-# note recursion
-alias copy='cp'
-alias list='ls'
-alias manual='man'
-alias move='mv'
-alias neovim='nvim'
-alias path='pwd'
-alias quit='q'
-alias remove='rm'
-alias ripgrep='rg'
-alias spotify-tui='spt'
-alias website-download='wd'
-alias weather='wttr'
-alias youtube='yt'

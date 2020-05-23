@@ -97,7 +97,7 @@ label = ram: %gb_used% |
 type = internal/fs
 mount-0 = /
 interval = 10
-label-mounted = teal: %used% |
+label-mounted = teal: %free% |
 
 [module/battery]
 type = internal/battery

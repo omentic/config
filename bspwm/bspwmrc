@@ -10,14 +10,13 @@
 ###############################
 
 killall -q sxhkd dunst lemonbar polybar spotifyd
-sxhkd &
 dunst &
-polybar pathfinder &
-# lemonbar -g x25 -b -f
+sxhkd &
 feh --bg-scale --no-fehbg ~/Pictures/backgrounds/trees.jpg &
 xbacklight -set 50
+polybar pathfinder &
+# $XDG_CONFIG_HOME/bar/barrc | lemonbar -bp -g 1889x25+16+16 -f "NotoSansMono:size=10" -f "Symbola:size=10" &
 lxpolkit &
-# spotifyd
 
 ############################################
 # configure window manager characteristics #
@@ -27,17 +26,17 @@ lxpolkit &
 bspc monitor -d I II III IV V VI VII IIX IX X
 
 # configure gaps characteristics
-bspc config border_width			8
-bspc config window_gap				16
+bspc config border_width		8
+bspc config window_gap			16
 bspc config focused_border_color	'#3C494E'
 bspc config normal_border_color		'#29353B'
 bspc config presel_feedback_color	'#16A085'
 
 # window split ratio
-bspc config split_ratio				0.50
+bspc config split_ratio			0.50
 
 # window focus settings
-bspc config click_to_focus			true
+bspc config click_to_focus		true
 bspc config focus_follows_pointer	true
 bspc config pointer_follows_monitor	true
 
@@ -47,3 +46,5 @@ bspc config pointer_follows_monitor	true
 
 # bspc rule -a mpv state=floating rectangle=150x150+1746+8
 bspc rule -a mpv state=floating rectangle=1872x1007+16+16
+bspc rule -a lxappearance state=floating					# why don't these work???
+bspc rule -a pavucontrol state=floating

@@ -1,0 +1,158 @@
+#! /bin/bash
+
+########################################################
+###        teal's custom lemonbar scripts file       ###
+### a featherweight, lemon-scented, bar based on xkb ###
+########################################################
+
+################
+# dependencies #
+################
+
+# checkupdates
+# df
+# top
+# acpi
+# nmcli
+# xbacklight
+# pulsemixer
+# date
+
+##############
+# workspaces #
+##############
+
+# for length of workspaces get them all
+# list workspaces as roman numberals
+# if statements and then a for loop (for > 10)
+
+# bspwm
+
+# berrywm
+
+# wm toggle script
+
+# current focus
+
+###############
+# system tray #
+###############
+
+# depends on another application?
+# ^ possibly in the center, another option is the current focused window
+
+###########
+# updates #
+###########
+
+# grinds lemonbar to a fucking halt
+UPDATES() {
+	UPDATES=$(checkupdates 2>/dev/null | wc -l)
+	test $UPDATES -eq 0 || echo "updates: $UPDATES available packages"
+}
+
+############
+# hardware #
+############
+
+WIFI() { # on click: launch a small nmtui?
+	echo -n "wifi: "
+	nmcli --mode multiline c s --active | grep "NAME" | sed "s/.*  //"
+}
+
+# issue: above might not work for >1 networks
+# eth
+
+# good speed test: mute and unmute
+AUDIO() { # on click: pactl set-sink-mute 0 toggle
+	echo -n "audio: "
+	if [ $(pulsemixer --get-mute) -eq 0 ]
+	then
+		echo "$(pulsemixer --get-volume | sed 's/ .*//')%"
+	else
+		echo "muted"
+	fi
+}
+
+BLIGHT() { # on click: xbacklight -set 50
+	echo -n "bright: "
+	xbacklight -get | sed "s/\..*//"
+}
+
+#############
+# internals #
+#############
+
+# issue: this doesn't give the same results as polybar
+# issue: SLOWS DOWN lemonbar i need async
+CPU() {
+	echo -n "cpu: "
+	echo "$(top -bn 1 | grep 'Cpu' | grep -Eo '([0-9]+\.[0-9] us)' | sed 's/\..*//')%"
+}
+
+# ram
+
+TEMP() { # internal temperature, in degrees fahrenheit
+	echo -n "temp: "
+	acpi -tf | grep -Eo "([0-9]*\.[0-9])"
+}
+
+SPACE() { # occupied disk space
+	echo -n "$USER: "
+	df -k / | grep -Eo "([0-9]+%)"
+}
+
+###########
+# battery #
+###########
+
+PWR() {
+	echo -n "pwr: "
+	test "$(acpi | grep 'Discharging')" || printf "⚡zap"
+	acpi | grep -Eo "([0-9]+%)"
+}
+
+UNTIL() {
+	echo -n "remaining: "
+	acpi -b | grep -Eo "([0-9][0-9]:[0-9][0-9])"
+}
+
+# interesting stuff:
+# acpi -i # degradation
+
+###############
+# date / time #
+###############
+
+DATE() {
+	echo -n "date: "
+	date "+%a, %b %d"
+}
+
+TIME() {
+	echo -n "time: "
+	date "+%I:%M %P"
+}
+
+# datetime toggle script
+
+#########
+# power #
+#########
+
+# options:
+# reboot: reboot
+# poweroff: poweroff
+
+#################
+# lemonbar loop #
+#################
+
+# THIS DESPERATELY NEEDS ASYNC
+# IN ANY FORM
+while :; do
+	LEFT="I II III IV V VI VII IIX IX X"
+	CENTER="super + f1 for commands"
+	RIGHT="$(WIFI) | $(AUDIO) | $(TEMP) | $(SPACE) | $(PWR) | $(TIME)"
+	echo "%{l} $LEFT %{c} $CENTER %{r} $RIGHT "
+done

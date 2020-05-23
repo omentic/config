@@ -9,7 +9,9 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall
 endif
 
-" install plugins through vim-plug
+"===========
+" vim-plug =
+"===========
 call plug#begin('~/.config/nvim/plugged')
 
 	Plug 'https://github.com/j-james/vim-heresy.git'

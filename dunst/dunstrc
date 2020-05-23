@@ -62,7 +62,7 @@ timeout = 10
 #icon = /path/to/icon
 
 [urgency_normal]
-background = "#16A085"
+#background = "#16A085"
 #foreground = "#ffffff"
 #foreground = "#3C494E"
 foreground = "#222222"

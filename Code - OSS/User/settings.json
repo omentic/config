@@ -102,5 +102,7 @@
 	},
 	"todo-tree.regex.regex": "((@|//|#|<!--|;| * |/\\*|^)\\s*($TAGS)|^\\s*- \\[ ,\\])",
 	"todo-tree.tree.expanded": true,
-	"workbench.colorTheme": "AdaptaNokto"
+	"workbench.colorTheme": "AdaptaNokto",
+	"editor.wordWrap": "on",
+	"explorer.compactFolders": false
 }
