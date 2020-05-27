@@ -12,7 +12,7 @@
 killall -q dunst sxhkd lemonbar polybar lxpolkit
 dunst &
 sxhkd &
-feh --bg-scale --no-fehbg ~/Pictures/backgrounds/trees.jpg &
+xwallpaper --stretch ~/Pictures/backgrounds/trees.jpg &
 xbacklight -set 50
 polybar pathfinder &
 # $XDG_CONFIG_HOME/bar/barrc | lemonbar -bp -g 1889x25+16+16 -f "NotoSansMono:size=10" -f "Symbola:size=10" &
