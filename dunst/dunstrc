@@ -1,46 +1,44 @@
 [global]
-monitor = 0					# Which monitor should the notifications be displayed on.
-follow = keyboard			# Display notification on the monitor focused by keyboard/mouse/none. Overrides the monitor option.
-geometry = "0x5-8+8"		# The geometry of the message window: [{width}]x{height}[+/-{x}+/-{y}]
-indicate_hidden = yes		# Show how many messages are currently hidden.
-shrink = no					# Shrink window if it's smaller than the width.
-transparency = 0			# The transparency of the window. Range: [0; 100].
-notification_height = 0		# The height of the entire notification.
-separator_height = 2		# Draw a line of "separator_height" pixel height between two notifications.
-padding = 8					# Padding between text and separator.
-horizontal_padding = 8		# Horizontal padding.
-frame_width = 8				# Defines width in pixels of frame around the notification window.
-frame_color = "#3C494E"		# Defines color of the frame around the notification window.
-separator_color = frame		# Define a color (auto/foreground/frame/any X color) for the separator.
-sort = yes					# Sort messages by urgency.
-idle_threshold = 120		# Don't remove messages, if the user is idle for longer than idle_threshold seconds.
-font = Monospace 10			# Set the font.
-line_height = 0				# Set the line height.
-markup = full				# Parse (full/strip/no) **basic** HTML markup.
-alignment = left			# Align message text left/center/right.
-show_age_threshold = 60		# Show age of message if message is older than show_age_threshold seconds.
-word_wrap = yes				# Split notifications into multiple lines if they don't fit into geometry.
-ellipsize = middle			# When word_wrap is set to no, make an ellipsis in long lines in the start/middle/end.
-ignore_newline = no			# Ignore newlines '\n' in notifications.
-stack_duplicates = true		# Stack together notifications with the same content.
-show_indicators = yes		# Display indicators for URLs (U) and actions (A).
-icon_position = off			# Align icons left/right/off.
-max_icon_size = 32			# Scale larger icons down to this size.
-sticky_history = yes		# Should a notification popped up from history be sticky or timeout?
-history_length = 10			# Maximum amount of notifications kept in history.
-always_run_script = true	# Always run rule-defined scripts, even if the notification is suppressed.
-title = Dunst				# Define the title of the windows spawned by dunst.
-class = Dunst				# Define the class of the windows spawned by dunst.
-verbosity = mesg			# Manage dunst's desire for (crit/warn/mesg/info/debug) talking.
-corner_radius = 0			# Define the corner radius of the notification window in pixel size.
-force_xinerama = false		# Use the Xinerama extension instead of RandR for multi-monitor support.
-mouse_left_click = close_current		# Action on mouse event: none/do_action/close_current/close_all
-mouse_middle_click = do_action			# Action on mouse event: none/do_action/close_current/close_all
-mouse_right_click = close_all			# Action on mouse event: none/do_action/close_current/close_all
-hide_duplicate_count = false			# Hide the count of stacked notifications with the same content.
-startup_notification = false			# Print a notification on startup.
-dmenu = /usr/bin/dmenu -p dunst:		# dmenu path
-browser = /usr/bin/firefox --new-tab	# Browser for opening urls in context menu.
+monitor = 0
+geometry = 0x5-8+8
+indicate_hidden = yes
+shrink = no
+transparency = 0
+notification_height = 0
+separator_height = 2
+padding = 8
+horizontal_padding = 8
+frame_width = 8
+frame_color = "#3C494E"
+separator_color = frame
+sort = yes
+idle_threshold = 120
+font = Monospace 10
+line_height = 0
+markup = full
+alignment = left
+show_age_threshold = 60
+word_wrap = yes
+ellipsize = end
+ignore_newline = no
+stack_duplicates = true
+show_indicators = yes
+icon_position = off
+max_icon_size = 32
+sticky_history = yes
+history_length = 10
+always_run_script = true
+title = Dunst
+class = Dunst
+verbosity = mesg
+corner_radius = 0
+mouse_left_click = close_current
+mouse_middle_click = do_action
+mouse_right_click = close_all
+hide_duplicate_count = false
+startup_notification = false
+dmenu = /usr/bin/dmenu -p dunst:
+browser = /usr/bin/firefox --new-tab
 icon_path = /usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/panel/:/usr/share/icons/Papirus/16x16/status/
 
 # The format of the message. Possible variables are:
@@ -75,39 +73,9 @@ foreground = "#ffffff"
 timeout = 0
 #icon = /path/to/icon
 
-# todo: move to sxhkd + dunstify?
 [shortcuts]
-close = ctrl+space
-#close_all = ctrl+shift+space
-history = ctrl+shift+space
-#context = ctrl+shift+period
+close = mod4+grave
+history = mod4+shift+grave
 
 [experimental]
-per_monitor_dpi = false		# Calculate the dpi to use on a per-monitor basis.
-
-# Every section that isn't one of the above is interpreted as a rules to override settings for certain messages.
-#
-# Messages can be matched by
-#	appname (discouraged, see desktop_entry)
-#	body
-#	category
-#	desktop_entry
-#	icon
-#	match_transient
-#	msg_urgency
-#	stack_tag
-#	summary
-#
-# and you can override the
-#	background
-#	foreground
-#	format
-#	frame_color
-#	fullscreen
-#	new_icon
-#	set_stack_tag
-#	set_transient
-#	timeout
-#	urgency
-#
-# Shell-like globbing will get expanded.
+per_monitor_dpi = false
