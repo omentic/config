@@ -48,7 +48,7 @@
 # grinds lemonbar to a fucking halt
 UPDATES() {
 	UPDATES=$(checkupdates 2>/dev/null | wc -l)
-	test $UPDATES -eq 0 || echo "updates: $UPDATES available packages"
+	test "$UPDATES"-eq 0 || echo "updates: $UPDATES available packages"
 }
 
 ############
@@ -108,7 +108,7 @@ SPACE() { # occupied disk space
 
 PWR() {
 	echo -n "pwr: "
-	test "$(acpi | grep 'Discharging')" || printf "⚡zap"
+	test "$(acpi | grep 'Discharging')" || printf "⚡ "
 	acpi | grep -Eo "([0-9]+%)"
 }
 
