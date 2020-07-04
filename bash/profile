@@ -14,9 +14,17 @@ export GOPATH="$HOME/.go"
 # applications #
 ################
 
-export BROWSER=/usr/bin/firefox
+export BROWSER=/usr/bin/chromium
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
+
+###############################
+# nintendo switch development #
+###############################
+
+export DEVKITPRO=/opt/devkitpro
+export DEVKITARM=/opt/devkitpro/devkitARM
+export DEVKITPPC=/opt/devkitpro/devkitPPC
 
 ########
 # PATH #

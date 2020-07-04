@@ -38,6 +38,8 @@ alias bat='bat --paging never --color always'
 alias config='git --git-dir=$HOME/.config/.git --work-tree=$HOME/.config'
 alias consoleds='consoleds --alliance-colour red --alliance-position 1 --team-number 4915'
 alias cp='cp -i'
+cdls() { cd "$@" && ls --color=auto; }
+alias cs='cdls'
 alias df='df -h'
 alias less='less -FR'
 alias link='ln'
