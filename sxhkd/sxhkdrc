@@ -7,14 +7,13 @@
 ### general all-purpose keybindings ###
 #######################################
 
-# todo: create seperate help menus from headers, break into mod + fx
 # show this help menu
 super + F1
 	cat ~/.config/sxhkd/sxhkdrc | \
 	awk '/^[a-z,A-Z]/ && last \{print $0,"\t",last\} \{last=""\} /^#/\{last=$0\}' | \
-	column -t -s $'\t' | rofi -dmenu -ip hotkeys
+	column -t -s $'\t' | rofi -dmenu -i -p 'hotkeys'
 
-# make sxhkd reload its configuration files
+# reload hotkey configuration files
 super + Escape
 	pkill -USR1 -x sxhkd
 
@@ -26,7 +25,7 @@ super + Return
 super + BackSpace
 	xsecurelock
 
-# application launcher / window switcher
+# application launcher
 super + space
 	rofi -i -show drun
 
@@ -42,21 +41,21 @@ super + shift + q
 ### bspwm exclusive keybindings ###
 ###################################
 
-# kill application
-super + q
-	bspc node -k
-
 # close application window
 super + w
 	bspc node -c
 
-# restart bspwm
-super + shift + r
-	bspc quit
+# kill application
+super + q
+	bspc node -k
 
-# reload bspwm
+# reload window manager
 super + r
 	bspc wm -r
+
+# restart window manager
+super + shift + r
+	bspc quit
 
 ###################################
 # state and flags of bspwm leaves #
@@ -66,7 +65,7 @@ super + r
 super + t
 	bspc node -t \~tiled
 
-# toggle floating "stacking" mode
+# toggle floating ("stacking") mode
 super + s
 	bspc node -t \~floating
 
@@ -98,9 +97,13 @@ super + shift + {h,j,k,l}
 super + shift + {Left,Down,Up,Right}
 	bspc node -s {west,south,north,east}
 
-# focus the next / previous node in the current desktop
-super + {_,shift + }Tab
-	bspc node -f {next,prev}.local
+# focus the previous node in the current desktop
+super + shift + Tab
+	bspc node -f prev.local
+
+# focus the next node in the current desktop
+super + Tab
+	bspc node -f next.local
 
 # focus the last node/desktop
 #super + {grave,Tab}
@@ -212,14 +215,14 @@ super + two-finger-click-and-drag
 
 # capture the entire screen
 Print
-	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -u & \
+	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -u && \
 	dunstify -a "Screenshot" -u low -r "131913" \
 	"Screenshot captured" "screen saved to ~/Pictures/screenshots/$(date +%Y)"
 
 # capture the current focus
 super + shift + Print
 	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -ui \
-	$(xdotool getactivewindow) & \
+	$(xdotool getactivewindow) && \
 	dunstify -a "Screenshot" -u low -r "131913" \
 	"Screenshot captured" "focus saved to ~/Pictures/screenshots/$(date +%Y)"
 
@@ -280,12 +283,12 @@ XF86MonBrightness{Down,Up}
 # insert special characters (altgr-intl)
 altgr + key
 
-#	e	y	u	i	o	p
-#					snap left/right?
-#	a	d
+#			e			y	u	i	o	p
+#									snap left/right?
+#	a		d
 #
-#	z	x	c			v	b	n						m
-#			center?				toggle decorations?
+#	z	x	c	v	b	n	m
+#			center?		toggle decorations?
 #	\	;	'	,	.	/
 #
 #	F2	F3	F4	F5	F6	F7	F8	F9	F10	F11	F12	Insert	Delete
