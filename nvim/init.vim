@@ -5,7 +5,7 @@
 
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	autocmd VimEnter * PlugInstall
 endif
 
@@ -14,39 +14,42 @@ endif
 "===========
 call plug#begin('~/.config/nvim/plugged')
 
-	Plug 'https://github.com/j-james/vim-heresy.git'
+	Plug 'https://github.com/j-james/vim-heresy'
 
 	" fluff
-	Plug 'https://github.com/rakr/vim-one.git'
-	Plug 'https://github.com/joshdick/onedark.vim.git'
-	Plug 'https://github.com/flazz/vim-colorschemes.git'
-	Plug 'https://github.com/itchyny/lightline.vim.git'
-	" Plug 'https://github.com/vim-airline/vim-airline.git'
+	Plug 'https://github.com/joshdick/onedark.vim'
+	Plug 'https://github.com/itchyny/lightline.vim'
 
 	" functionality
-	Plug 'https://github.com/tpope/vim-sleuth.git'
-	Plug 'https://github.com/terryma/vim-multiple-cursors.git'
-	" Plug 'https://github.com/tpope/vim-eunuch.git'
-	" Plug 'https://github.com/tpope/vim-surround.git'
-	" Plug 'https://github.com/tpope/vim-vinegar.git'
-	" Plug 'https://github.com/scrooloose/nerdtree.git'
+	Plug 'https://github.com/tpope/vim-sleuth'
+	Plug 'https://github.com/terryma/vim-multiple-cursors'
+	" Plug 'https://github.com/tpope/vim-eunuch'
+	" Plug 'https://github.com/tpope/vim-surround'
+	" Plug 'https://github.com/tpope/vim-vinegar'
+	" Plug 'https://github.com/scrooloose/nerdtree'
 
 	" linting
-	" Plug 'https://github.com/dense-analysis/ale.git'
-	" Plug 'https://github.com/scrooloose/syntastic.git'
+	" Plug 'https://github.com/dense-analysis/ale'
+	" Plug 'https://github.com/scrooloose/syntastic'
 
 	" languages
-	Plug 'https://github.com/airblade/vim-gitgutter.git'
-	" Plug 'https://github.com/tpope/vim-fugitive.git'
-	" Plug 'https://github.com/xuhdev/vim-latex-live-preview.git', {'for':'tex'}
+	Plug 'https://github.com/airblade/vim-gitgutter'
+	" Plug 'https://github.com/tpope/vim-fugitive'
+	Plug 'https://github.com/fatih/vim-go', {'for':'go'}
+	Plug 'https://github.com/alaviss/nim.nvim', {'for':'nim'}
+	Plug 'https://github.com/xuhdev/vim-latex-live-preview', {'for':'tex'}
 
 call plug#end()
 
 " colorscheme
 syntax on
-" colorscheme one
-" set background=dark
-" colorscheme onedark
+colorscheme onedark
+highlight Normal ctermbg=black
+highlight Comment cterm=italic
+" let g:lightline = {'colorscheme':'onedark'}
+
+" turn on line numbers
+set number
 
 " specifies the width of a tab character
 set tabstop=4

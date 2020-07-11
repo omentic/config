@@ -34,7 +34,7 @@ set -o noclobber
 # definitions #
 ###############
 
-alias bat='bat --paging never --color always'
+alias bat='bat --paging never --color always --theme TwoDark'
 alias config='git --git-dir=$HOME/.config/.git --work-tree=$HOME/.config'
 alias consoleds='consoleds --alliance-colour red --alliance-position 1 --team-number 4915'
 alias cp='cp -i'
