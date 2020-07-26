@@ -248,23 +248,23 @@ XF86Audio{Mute,LowerVolume,RaiseVolume}
 
 # rewind track
 XF86AudioPrev
-	playerctl previous || mocp --previous
+	playerctl previous
 
 # toggle play-pause of track
 XF86AudioPlay
-	playerctl play-pause || mocp --toggle-pause
+	playerctl play-pause
 
 # skip track
 XF86AudioNext
-	playerctl next || mocp --next
+	playerctl next
 
 # seek backwards by five seconds
 shift + XF86AudioPrev
-	playerctl position 5 - || mocp --seek -5
+	playerctl position 5 -
 
 # seek forwards by five seconds
 shift + XF86AudioNext
-	playerctl position 5 + || mocp --seek 5
+	playerctl position 5 +
 
 #############
 # backlight #

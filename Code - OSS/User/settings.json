@@ -104,5 +104,8 @@
 	"todo-tree.tree.expanded": true,
 	"workbench.colorTheme": "AdaptaNokto",
 	"editor.wordWrap": "on",
-	"explorer.compactFolders": false
+	"explorer.compactFolders": false,
+	"diffEditor.ignoreTrimWhitespace": false,
+	"explorer.autoReveal": false,
+	"java.semanticHighlighting.enabled": true
 }
