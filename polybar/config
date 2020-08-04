@@ -70,7 +70,7 @@ inherit = module/network
 interface = wlan0
 label-connected = wifi: %essid% |
 label-disconnected = wifi: disconnected |
-click-left = kitty wifi toggle
+; click-left = rofi wifi launch
 
 [module/updates]
 type = custom/script
@@ -78,7 +78,7 @@ type = custom/script
 exec = UPDATES=$(checkupdates 2>/dev/null | wc -l); if [ $UPDATES == 0 ]; then echo ""; else echo "updates: $UPDATES available packages |"; fi
 interval = 600
 label = %output%
-click-left = kitty sudo pakku -Syyu
+; click-left = kitty sudo pakku -Syyu floating same size as rofi
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -92,17 +92,20 @@ label-muted = audio: muted |
 type = internal/cpu
 interval = 0.5
 label = cpu: %percentage%% |
+; click-left = toggle with ram
 
 [module/memory]
 type = internal/memory
 interval = 3
 label = ram: %gb_used% |
+; click-left = toggle with cpu
 
 [module/filesystem]
 type = internal/fs
 mount-0 = /
 interval = 10
 label-mounted = teal: %free% |
+; click-left = toggle free and taken
 
 [module/battery]
 type = internal/battery
@@ -111,6 +114,7 @@ adapter = AC
 poll-interval = 5
 label-charging = pwr: ⚡ %percentage%% |
 label-discharging = pwr: %percentage%% |
+; click-left = toggle time remaining
 
 [module/date]
 type = internal/date

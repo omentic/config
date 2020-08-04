@@ -73,3 +73,6 @@ nnoremap ; :
 
 " don't save netrw history
 let g:netrw_dirhistmax=0
+
+" don't hard break lines for mail posts
+autocmd filetype mail set textwidth=0

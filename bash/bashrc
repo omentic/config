@@ -35,6 +35,7 @@ set -o noclobber
 ###############
 
 alias bat='bat --paging never --color always --theme TwoDark'
+alias calc='qalc -c'
 alias config='git --git-dir=$HOME/.config/.git --work-tree=$HOME/.config'
 alias consoleds='consoleds --alliance-colour red --alliance-position 1 --team-number 4915'
 alias cp='cp -i'
@@ -42,12 +43,15 @@ cdls() { cd "$@" && ls --color=auto; }
 alias cs='cdls'
 alias df='df -h'
 alias fd='fd -H'
+alias help='tldr -p'
 alias less='less -FR'
 alias link='ln'
 alias ls='ls --color=auto'
 alias mocp='mocp --config ~/.config/moc/config'
 alias more='less'
+alias ncdu='ncdu --color dark'
 alias neofetch='neofetch --kitty ~/Pictures/backgrounds/trees.jpg'
+alias ping='prettyping --nolegend'
 alias please='sudo'
 alias prepac='pakku -Ssq | fzf --preview "pakku -Si {}" --layout=reverse'
 alias prepac-local='pakku -Qq | fzf --preview "pakku -Qil {}" --layout=reverse'

@@ -8,7 +8,7 @@
 #######################################
 
 # show this help menu
-super + F1
+super + h
 	cat ~/.config/sxhkd/sxhkdrc | \
 	awk '/^[a-z,A-Z]/ && last \{print $0,"\t",last\} \{last=""\} /^#/\{last=$0\}' | \
 	column -t -s $'\t' | rofi -dmenu -i -p 'hotkeys'
@@ -216,27 +216,27 @@ super + two-finger-click-and-drag
 # capture the entire screen
 Print
 	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -u && \
-	dunstify -a "Screenshot" -u low -r "131913" \
+	dunstify -a "maim" -u low -r "131913" \
 	"Screenshot captured" "screen saved to ~/Pictures/screenshots/$(date +%Y)"
 
 # capture the current focus
 super + shift + Print
 	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -ui \
 	$(xdotool getactivewindow) && \
-	dunstify -a "Screenshot" -u low -r "131913" \
+	dunstify -a "maim" -u low -r "131913" \
 	"Screenshot captured" "focus saved to ~/Pictures/screenshots/$(date +%Y)"
 
 # capture a select area
 super + Print
-	dunstify -a "Screenshot" -u low -r "131913" "Select an area" && \
+	dunstify -a "maim" -u low -r "131913" "Select an area" && \
 	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -us && \
-	dunstify -a "Screenshot" -u low -r "131913" \
+	dunstify -a "maim" -u low -r "131913" \
 	"Screenshot captured" "area saved to ~/Pictures/screenshots/$(date +%Y)"
 
 # mute / lower / raise volume
 XF86Audio{Mute,LowerVolume,RaiseVolume}
 	pactl set-sink-{mute 0 toggle,volume 0 -5%,volume 0 +5%} && \
-	dunstify -a "Volume" -u low -r "865863" \
+	dunstify -a "pactl" -u low -r "865863" \
 	"Volume: $(pulsemixer --get-volume | sed 's/ .*//')%" \
 	"$(test $(pulsemixer --get-mute) -ne 1 || echo 'mute')"
 
@@ -273,7 +273,7 @@ shift + XF86AudioNext
 # control the screen brightness
 XF86MonBrightness{Down,Up}
 	xbacklight {-dec 10,-inc 10} && \
-	dunstify -a "Backlight" -u low -r "21311" \
+	dunstify -a "xbacklight" -u low -r "21311" \
 	"Backlight: $(xbacklight -get | sed 's/\..*//')%"
 
 #####################
