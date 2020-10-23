@@ -8,7 +8,7 @@ notification_height = 0
 separator_height = 2
 padding = 8
 horizontal_padding = 8
-frame_width = 8
+frame_width = 6
 frame_color = "#3C494E"
 separator_color = frame
 sort = yes
@@ -23,7 +23,7 @@ ellipsize = end
 ignore_newline = no
 stack_duplicates = true
 show_indicators = yes
-icon_position = off
+icon_position = left
 max_icon_size = 32
 sticky_history = yes
 history_length = 10
@@ -31,14 +31,14 @@ always_run_script = true
 title = Dunst
 class = Dunst
 verbosity = mesg
-corner_radius = 0
+corner_radius = 6
 mouse_left_click = close_current
 mouse_middle_click = do_action
 mouse_right_click = close_all
 hide_duplicate_count = false
 startup_notification = false
 dmenu = /usr/bin/dmenu -p dunst:
-browser = /usr/bin/firefox --new-tab
+browser = chromium
 icon_path = /usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/panel/:/usr/share/icons/Papirus/16x16/status/
 
 # The format of the message. Possible variables are:
@@ -54,28 +54,24 @@ icon_path = /usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x
 format = "<b>%s</b>\n%b"
 
 [urgency_low]
-background = "#222222"
+background = "#2F343F"
 foreground = "#ffffff"
 timeout = 10
-#icon = /path/to/icon
+#background = "#222222"
 
 [urgency_normal]
-#background = "#16A085"
-#foreground = "#ffffff"
-#foreground = "#3C494E"
-foreground = "#222222"
+background = "#2F343F"
+foreground = "#ffffff"
 timeout = 10
-#icon = /path/to/icon
+#background = "#16A085"
+#foreground = "#3C494E"
+#foreground = "#222222"
 
 [urgency_critical]
 background = "#900000"
 foreground = "#ffffff"
 timeout = 0
 #icon = /path/to/icon
-
-[shortcuts]
-close = mod4+grave
-history = mod4+shift+grave
 
 [experimental]
 per_monitor_dpi = false

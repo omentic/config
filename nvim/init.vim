@@ -44,7 +44,7 @@ call plug#end()
 " colorscheme
 syntax on
 colorscheme onedark
-highlight Normal ctermbg=black
+highlight Normal ctermbg=none
 highlight Comment cterm=italic
 " let g:lightline = {'colorscheme':'onedark'}
 

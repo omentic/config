@@ -8,14 +8,10 @@
 #######################################
 
 # show this help menu
-super + h
+super + slash
 	cat ~/.config/sxhkd/sxhkdrc | \
 	awk '/^[a-z,A-Z]/ && last \{print $0,"\t",last\} \{last=""\} /^#/\{last=$0\}' | \
 	column -t -s $'\t' | rofi -dmenu -i -p 'hotkeys'
-
-# reload hotkey configuration files
-super + Escape
-	pkill -USR1 -x sxhkd
 
 # launch a terminal
 super + Return
@@ -23,39 +19,45 @@ super + Return
 
 # lock screen
 super + BackSpace
-	xsecurelock
+	xflock4
 
 # application launcher
 super + space
-	rofi -i -show drun
+	xfce4-popup-whiskermenu
+#	rofi -i -show drun
 
 # window switcher
 super + shift + space
 	rofi -i -show window
 
+# go through notification history (dunst)
+super + {shift + ,_}grave
+	dunstctl {history-pop,close}
+
 # launch xkill
 super + shift + q
 	xkill
+
+# end the current session
+super + shift + r
+	xfce4-session-logout
 
 ###################################
 ### bspwm exclusive keybindings ###
 ###################################
 
-# close application window
-super + w
-	bspc node -c
-
 # kill application
 super + q
 	bspc node -k
 
+# close application window
+super + w
+	bspc node -c
+
 # reload window manager
 super + r
-	bspc wm -r
-
-# restart window manager
-super + shift + r
-	bspc quit
+	bspc wm -r && sleep 0.4 &&\
+	dunstify -a "bspwm" -u low "Reloaded Window Manager"
 
 ###################################
 # state and flags of bspwm leaves #
@@ -65,11 +67,11 @@ super + shift + r
 super + t
 	bspc node -t \~tiled
 
-# toggle floating ("stacking") mode
+# toggle stacking ("floating") mode
 super + s
 	bspc node -t \~floating
 
-# toggle gaps mode
+# toggle gaps ("pseudo-tiled") mode
 super + g
 	bspc node -t \~pseudo_tiled
 
@@ -78,62 +80,34 @@ super + f
 	bspc node -t \~fullscreen
 
 # toggle monacle mode
-#super + m
-#	bspc desktop -l next
+super + m
+	bspc desktop -l next
 
 #######################
 # focusing and moving #
 #######################
 
-# focus the node in the given direction
+# focus the node in a given direction
 super + {h,j,k,l}
 	bspc node -f {west,south,north,east}
 super + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
 
-# swap nodes in the given direction
+# swap nodes in a given direction
 super + shift + {h,j,k,l}
 	bspc node -s {west,south,north,east}
 super + shift + {Left,Down,Up,Right}
 	bspc node -s {west,south,north,east}
 
-# focus the previous node in the current desktop
-super + shift + Tab
-	bspc node -f prev.local
-
-# focus the next node in the current desktop
-super + Tab
-	bspc node -f next.local
-
-# focus the last node/desktop
-#super + {grave,Tab}
-#	bspc {node,desktop} -f last
-
-# swap the current node and the biggest node
-#super + g
-#	bspc node -s biggest
-
-# focus the node for the given path jump
-#super + {p,b,comma,period}
-#	bspc node -f @{parent,brother,first,second}
-
 # focus the older / newer node in history
-#super + {u,i}
-#	bspc wm -h off; \
-#	bspc node {older,newer} -f; \
-#	bspc wm -h on
+super + {shift + ,_}Tab
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
 
-# move a floating window
-#super + {Left,Down,Up,Right}
-#	bspc node -v {-20 0,0 20,0 -20,20 0}
-
-# set the node flags
-#super + ctrl + {z,x,c,v}
-#	bspc node -g {private,locked,sticky,marked}
-
-# send the newest marked node to the newest preselected node
-#super + y
-#	bspc node newest.marked.local -n newest.!automatic.local
+# cycle windows counterclockwise / clockwise
+super + {a,d}
+	bspc node @/ -C {backward,forward}
 
 ############
 # desktops #
@@ -150,13 +124,9 @@ super + shift + {1-9,0}
 # focus the previous / next desktop
 super + {minus,equal}
 	bspc desktop -f {prev,next}.local
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
 
 # send to the previous / next desktop
 super + shift + {minus,equal}
-	bspc node -d {prev,next}.local
-super + shift + bracket{left,right}
 	bspc node -d {prev,next}.local
 
 #####################################
@@ -174,7 +144,7 @@ super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
 # cancel the focused node preselection
-super + ctrl + {0,Escape}
+{super + ctrl + 0,~Escape}
 	bspc node -p cancel
 
 ##############################
@@ -209,6 +179,69 @@ super + two-finger-click-and-drag
 
 # http://wiki.linuxquestions.org/wiki/XF86_keyboard_symbols
 
+#################
+# audio / video #
+#################
+
+# mute / lower / raise volume
+XF86Audio{Mute,LowerVolume,RaiseVolume}
+	pactl set-sink-{mute 0 toggle,volume 0 -5%,volume 0 +5%}
+# && \
+#	dunstify -a "pactl" -u low -r "865863" \
+#	"Volume: $(pulsemixer --get-volume | sed 's/ .*//')%" \
+#	"$(test $(pulsemixer --get-mute) -ne 1 || echo 'mute')"
+
+# rewind / play-pause / skip track
+XF86Audio{Prev,Play,Next}
+	playerctl {previous,play-pause,next}
+
+# seek backwards by five seconds
+shift + XF86AudioPrev
+	playerctl position 5-
+
+# seek forwards by five seconds
+shift + XF86AudioNext
+	playerctl position 5+
+
+####################
+# custom media key #
+####################
+
+# color picker
+F7
+	killall -q colorpicker && \
+	dunstify -r "31512" "Color Picker" "Select a color" && \
+	convert -size 100x100 xc:"$(colorpicker -doq)" /tmp/color-picker.png && \
+	dunstify -r "31512" -i /tmp/color-picker.png "Color Picker" \
+	$(convert /tmp/color-picker.png -format "#%[hex:s]\n" info:) && \
+	convert /tmp/color-picker.png -format "#%[hex:s]\n" info: | xclip -sel c
+
+#######################
+# displays / monitors #
+#######################
+
+XF86Display
+	xfce4-display-settings
+
+##########
+# search #
+##########
+
+# launch terminal file browser
+XF86Search
+	kitty nnn
+
+#############
+# backlight #
+#############
+
+# control the screen brightness
+XF86MonBrightness{Down,Up}
+	xbacklight {-dec 5,-inc 5} && \
+	dunstify -a "xbacklight" -u normal -r "21311" \
+	-i /usr/share/icons/Papirus-Dark/22x22/panel/xfpm-brightness-lcd.svg \
+	"Backlight: $(xbacklight -get | sed 's/\..*//')%"
+
 ##################
 # screenshooting #
 ##################
@@ -233,49 +266,6 @@ super + Print
 	dunstify -a "maim" -u low -r "131913" \
 	"Screenshot captured" "area saved to ~/Pictures/screenshots/$(date +%Y)"
 
-# mute / lower / raise volume
-XF86Audio{Mute,LowerVolume,RaiseVolume}
-	pactl set-sink-{mute 0 toggle,volume 0 -5%,volume 0 +5%} && \
-	dunstify -a "pactl" -u low -r "865863" \
-	"Volume: $(pulsemixer --get-volume | sed 's/ .*//')%" \
-	"$(test $(pulsemixer --get-mute) -ne 1 || echo 'mute')"
-
-#################
-# audio / video #
-#################
-
-# none of the below work with parole...
-
-# rewind track
-XF86AudioPrev
-	playerctl previous
-
-# toggle play-pause of track
-XF86AudioPlay
-	playerctl play-pause
-
-# skip track
-XF86AudioNext
-	playerctl next
-
-# seek backwards by five seconds
-shift + XF86AudioPrev
-	playerctl position 5 -
-
-# seek forwards by five seconds
-shift + XF86AudioNext
-	playerctl position 5 +
-
-#############
-# backlight #
-#############
-
-# control the screen brightness
-XF86MonBrightness{Down,Up}
-	xbacklight {-dec 10,-inc 10} && \
-	dunstify -a "xbacklight" -u low -r "21311" \
-	"Backlight: $(xbacklight -get | sed 's/\..*//')%"
-
 #####################
 ### special notes ###
 #####################
@@ -283,13 +273,58 @@ XF86MonBrightness{Down,Up}
 # insert special characters (altgr-intl)
 altgr + key
 
-#			e			y	u	i	o	p
-#									snap left/right?
-#	a		d
+#	mod
+#	`	1	2	3	4	5	6	7	8	9	0	-	=	backspace
 #
-#	z	x	c	v	b	n	m
-#			center?		toggle decorations?
-#	\	;	'	,	.	/
+#	q	w	e	r	t	y	u	i	o	p	[	]	\
+#			e			y	u	i	o	p	[	]	\
+#	tab	a	s	d	f	g	h	j	k	l	;	'
+#											;	'
+#			z	x	c	v	b	n	m	,	.	/
+#			z	x	c	v	b	n		,	.
 #
-#	F2	F3	F4	F5	F6	F7	F8	F9	F10	F11	F12	Insert	Delete
 #
+#	mod + shift
+#	`	1	2	3	4	5	6	7	8	9	0	-	=	backspace
+#														backspace
+#	q	w	e	r	t	y	u	i	o	p	[	]	\
+#		w	e		t	y	u	i	o	p	[	]	\
+#	tab	a	s	d	f	g	h	j	k	l	;	'	enter
+#		a	s	d	f	g	h	j	k	l	;	'	enter
+#			z	x	c	v	b	n	m	,	.	/
+#			z	x	c	v	b	n	m	,	.	/
+#
+# idea: uiop as a partner to hjkl
+
+# reload hotkey configuration files
+# super + Escape
+#	pkill -USR1 -x sxhkd
+
+# focus the last node/desktop
+#super + {grave,Tab}
+#	bspc {node,desktop} -f last
+
+# swap the current node and the biggest node
+#super + g
+#	bspc node -s biggest
+
+# focus the node for the given path jump
+#super + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
+
+# focus the previous / next node in the current desktop
+#super + {u,i}
+#	bspc node -f prev.local
+#	bspc node -f next.local
+
+# move a floating window
+#super + {Left,Down,Up,Right}
+#	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# set the node flags
+#super + ctrl + {z,x,c,v}
+#	bspc node -g {private,locked,sticky,marked}
+
+# send the newest marked node to the newest preselected node
+#super + y
+#	bspc node newest.marked.local -n newest.!automatic.local
