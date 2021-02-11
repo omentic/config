@@ -19,25 +19,34 @@
 width = 100%
 height = 25
 bottom = true
-
-; background = #222
 background = #263238
 foreground = #dfdfdf
-; background = #29353B
-
 font-0 = NotoSansMono:size=10
 font-1 = NotoSansSymbols2-Regular:size=10
-
 modules-left = bspwm
 modules-center = text
 modules-right = wired-network wireless-network updates pulseaudio cpu memory filesystem battery date powermenu
-
 module-margin-right = 1
-;offset-x = 15
-;offset-y = 15
-;width = 98.5%
-
+separator = "| "
 wm-restack = bspwm
+
+[bar/teal]
+width = 98.5%
+offset-x = 15
+offset-y = 15
+height = 30
+bottom = true
+background = #2F343F
+foreground = #dfdfdf
+font-0 = NotoSansMono:size=10
+font-1 = NotoSansSymbols2-Regular:size=10
+wm-restack = bspwm
+
+modules-left = bspwm
+modules-center = text
+modules-right = wireless-network tray pulseaudio cpu memory filesystem battery date powermenu
+separator = " | "
+# tray-position = center
 
 ;=======================
 ; module configuration
@@ -47,12 +56,12 @@ wm-restack = bspwm
 type = internal/bspwm
 enable-click = true
 enable-scroll = true
-reverse-scroll = true
 label-focused-foreground = #888
+pin-workspaces = true
 
 [module/text]
 type = custom/text
-content = super + f1 for commands
+content = super + ? for commands
 
 [module/network]
 type = internal/network
@@ -61,21 +70,21 @@ interval = 3.0
 [module/wired-network]
 inherit = module/network
 interface = enp57s0u1u2
-label-connected = ethernet: %essid% at %upspeed% up %downspeed% down |
-label-disconnected = ethernet: disconnected |
+label-connected = eth: %essid% at %upspeed% up %downspeed% down
+label-disconnected = eth: disconnected
 
 [module/wireless-network]
 inherit = module/network
 ; interface = wlp58s0
 interface = wlan0
-label-connected = wifi: %essid% |
-label-disconnected = wifi: disconnected |
+label-connected = wifi: %essid%
+label-disconnected = wifi: disconnected
 ; click-left = rofi wifi launch
 
 [module/updates]
 type = custom/script
 # redirects stderr to /dev/null
-exec = UPDATES=$(checkupdates 2>/dev/null | wc -l); if [ $UPDATES == 0 ]; then echo ""; else echo "updates: $UPDATES available packages |"; fi
+exec = UPDATES=$(checkupdates 2>/dev/null | wc -l); if [ $UPDATES == 0 ]; then echo ""; else echo "updates: $UPDATES available packages"; fi
 interval = 600
 label = %output%
 ; click-left = kitty sudo pakku -Syyu floating same size as rofi
@@ -84,27 +93,27 @@ label = %output%
 type = internal/pulseaudio
 sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 interval = 10
-label-volume = audio: %percentage%% |
-label-muted = audio: muted |
+label-volume = audio: %percentage%%
+label-muted = audio: muted
 ; emojis: 🔇🔈🔉🔊
 
 [module/cpu]
 type = internal/cpu
 interval = 0.5
-label = cpu: %percentage%% |
+label = cpu: %percentage%%
 ; click-left = toggle with ram
 
 [module/memory]
 type = internal/memory
 interval = 3
-label = ram: %gb_used% |
+label = ram: %gb_used%
 ; click-left = toggle with cpu
 
 [module/filesystem]
 type = internal/fs
 mount-0 = /
 interval = 10
-label-mounted = teal: %free% |
+label-mounted = teal: %free%
 ; click-left = toggle free and taken
 
 [module/battery]
@@ -112,26 +121,26 @@ type = internal/battery
 battery = BAT0
 adapter = AC
 poll-interval = 5
-label-charging = pwr: ⚡ %percentage%% |
-label-discharging = pwr: %percentage%% |
+label-charging = pwr: ⚡ %percentage%%
+label-discharging = pwr: %percentage%%
 ; click-left = toggle time remaining
 
 [module/date]
 type = internal/date
 interval = 1.0
 label = %date%
-date = time: %I:%M %P |
-date-alt = date: %a, %b %d |
+date = time: %I:%M %P
+date-alt = date: %a, %b %d
 
 [module/powermenu]
 type = custom/menu
 expand-right = true
 format-spacing = 1
-label-open = ⏾.
+label-open = "[x] "
 label-close = cancel
 label-separator = |
 menu-0-0 = reboot
 menu-0-0-exec = reboot
-menu-0-1 = power off
+menu-0-1 = "power off "
 menu-0-1-exec = poweroff
 ; emojis: ⏻ ⏼ ⏽ ⭘ ⏾
