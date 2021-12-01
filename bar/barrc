@@ -46,7 +46,7 @@
 ###########
 
 # grinds lemonbar to a fucking halt
-UPDATES() {
+_updates() {
 	UPDATES=$(checkupdates 2>/dev/null | wc -l)
 	test "$UPDATES"-eq 0 || echo "updates: $UPDATES available packages"
 }
@@ -55,7 +55,7 @@ UPDATES() {
 # hardware #
 ############
 
-WIFI() { # on click: launch a small nmtui?
+_wifi() { # on click: launch a small nmtui?
 	echo -n "wifi: "
 	nmcli --mode multiline c s --active | grep "NAME" | sed "s/.*  //"
 }
@@ -64,7 +64,7 @@ WIFI() { # on click: launch a small nmtui?
 # eth
 
 # good speed test: mute and unmute
-AUDIO() { # on click: pactl set-sink-mute 0 toggle
+_audio () { # on click: pactl set-sink-mute 0 toggle
 	echo -n "audio: "
 	if [ $(pulsemixer --get-mute) -eq 0 ]
 	then
@@ -74,7 +74,7 @@ AUDIO() { # on click: pactl set-sink-mute 0 toggle
 	fi
 }
 
-BLIGHT() { # on click: xbacklight -set 50
+_blight() { # on click: xbacklight -set 50
 	echo -n "bright: "
 	xbacklight -get | sed "s/\..*//"
 }
@@ -85,19 +85,19 @@ BLIGHT() { # on click: xbacklight -set 50
 
 # issue: this doesn't give the same results as polybar
 # issue: SLOWS DOWN lemonbar i need async
-CPU() {
+_cpu () {
 	echo -n "cpu: "
 	echo "$(top -bn 1 | grep 'Cpu' | grep -Eo '([0-9]+\.[0-9] us)' | sed 's/\..*//')%"
 }
 
 # ram
 
-TEMP() { # internal temperature, in degrees fahrenheit
+_temp() { # internal temperature, in degrees fahrenheit
 	echo -n "temp: "
 	acpi -tf | grep -Eo "([0-9]*\.[0-9])"
 }
 
-SPACE() { # occupied disk space
+_space() { # occupied disk space
 	echo -n "$USER: "
 	df -k / | grep -Eo "([0-9]+%)"
 }
@@ -106,13 +106,13 @@ SPACE() { # occupied disk space
 # battery #
 ###########
 
-PWR() {
+_pwr() {
 	echo -n "pwr: "
-	test "$(acpi | grep 'Discharging')" || printf "⚡ "
+	test "$(acpi | grep 'Discharging')" || printf "⚡"
 	acpi | grep -Eo "([0-9]+%)"
 }
 
-UNTIL() {
+_until() {
 	echo -n "remaining: "
 	acpi -b | grep -Eo "([0-9][0-9]:[0-9][0-9])"
 }
@@ -124,14 +124,22 @@ UNTIL() {
 # date / time #
 ###############
 
-DATE() {
+_date() {
 	echo -n "date: "
 	date "+%a, %b %d"
 }
 
-TIME() {
+_clock() {
 	echo -n "time: "
 	date "+%I:%M %P"
+}
+
+_pubip () {
+	dig +short myip.opendns.com @resolver1.opendns.com
+}
+
+_privip() {
+	ip addr show | rg wl | awk '/inet/ {print $2}'
 }
 
 # datetime toggle script
@@ -150,9 +158,20 @@ TIME() {
 
 # THIS DESPERATELY NEEDS ASYNC
 # IN ANY FORM
-while :; do
-	LEFT="I II III IV V VI VII IIX IX X"
-	CENTER="super + f1 for commands"
-	RIGHT="$(WIFI) | $(AUDIO) | $(TEMP) | $(SPACE) | $(PWR) | $(TIME)"
-	echo "%{l} $LEFT %{c} $CENTER %{r} $RIGHT "
+{
+while :
+do
+	left="I II III IV V VI VII IIX IX X"
+	center="super + / for commands"
+	right="$(_wifi) | $(_temp) | $(_space) | $(_pwr) | $(_clock)"
+	echo "%{l} $left %{c} $center %{r} $right "
+	sleep 1
 done
+} | lemonbar -pb -g 1889x25+16+16 -f "NotoSansMono:size=11" -f "NotoSansSymbols2-Regular:size=11"
+
+#while true
+#do
+#    BAR_INPUT="%{l} $(cur) $(tot)%{c}%{r}$(pubip) $(privip) $(drive) $(mem) $(cpu) $(vol) $(pdate)"
+#	echo $BAR_INPUT
+#	sleep 1
+#done

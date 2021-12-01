@@ -1,2 +1,8 @@
+/run/*
 /timeshift/*
-~/.local/share/Trash/*
+/usr/share/icons/*
+/home/apropos/.icons/*
+/home/apropos/.themes/*
+/home/apropos/.local/share/Trash/*
+/home/apropos/Applications/*
+/home/apropos/Downloads/*

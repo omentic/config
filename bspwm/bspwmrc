@@ -16,7 +16,7 @@ dunst &
 picom &
 polybar teal &
 xwallpaper --zoom ~/Pictures/backgrounds/big-sur-color-day.jpg
-xbacklight -set 40
+light -S 50
 blueman-applet &
 nm-applet &
 pamac-tray &

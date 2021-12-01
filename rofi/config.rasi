@@ -2,5 +2,5 @@ configuration {
 	modi: "window,run,drun";
 	show-icons: true;
 	icon-theme: "Papirus";
-	theme: "Arc-Dark";
 }
+@theme "Arc-Dark"

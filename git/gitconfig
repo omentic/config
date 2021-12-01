@@ -1,13 +1,12 @@
 [user]
 	name = j-james
 	email = jj@j-james.me
-	signingKey = 8FD832F5F20FB705
 [core]
 	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
-[commit]
-	gpgSign = true
-[diff]
-	algorithm = histogram
 [help]
 	autocorrect = 1
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main

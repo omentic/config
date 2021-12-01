@@ -14,12 +14,13 @@ export GOPATH="$HOME/.go"
 export GEM_HOME="$HOME/.gems"
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG="v:preview-tui"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 ################
 # applications #
 ################
 
-export BROWSER=/usr/bin/chromium
+export BROWSER=/usr/bin/firefox-developer-edition
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 
@@ -31,21 +32,16 @@ export DEVKITPRO=/opt/devkitpro
 export DEVKITARM=/opt/devkitpro/devkitARM
 export DEVKITPPC=/opt/devkitpro/devkitPPC
 
-###############
-# xsecurelock #
-###############
-export XSECURELOCK_PASSWORD_PROMPT="asterisks"
-export XSECURELOCK_DISCARD_FIRST_KEYPRESS=0
-
 ########
 # PATH #
 ########
 
 export PATH="$PATH:$HOME/Applications"
-export PATH="$PATH:$HOME/Applications/scripts"
 export PATH="$PATH:$HOME/Applications/android-studio/bin"
 export PATH="$PATH:$HOME/Applications/android-sdk/platform-tools"
 export PATH="$PATH:$HOME/Applications/flutter/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
+export PATH="$PATH:$HOME/.go/bin"
+export PATH="$PATH:$HOME/.nimble/bin"

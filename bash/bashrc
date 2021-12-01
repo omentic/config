@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# limits recursive functions, see 'man bash'
+# Limits recursive functions, see 'man bash'
 [[ "$(whoami)" = "root" ]] && return
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100
 
@@ -43,54 +43,49 @@ shopt -s promptvars
 shopt -s sourcepath
 
 set -o noclobber
+stty -ixon
 
-###############
-# definitions #
-###############
+###########
+# aliases #
+###########
 
 alias bat='bat --paging never --color always --theme TwoDark'
+alias bottom='btm'
 alias calc='qalc -c'
 alias config='git --git-dir=$HOME/.config/.git --work-tree=$HOME/.config'
-alias consoleds='consoleds --alliance-colour red --alliance-position 1 --team-number 4915'
 alias cp='cp -i'
 cdls() { cd "$@" && ls --color=auto; }
 alias cs='cdls'
 alias df='df -h'
+alias edit='$EDITOR'
 alias fd='fd --no-ignore-vcs'
+alias find='fd'
 alias help='tldr -p'
 alias less='less -FR'
 alias link='ln'
 alias ls='ls --color=auto'
 alias ll='ls -lv'
+alias mc='micro'
 alias mocp='mocp --config ~/.config/moc/config'
+alias moc='mocp --config ~/.config/moc/config'
 alias more='less'
 alias ncdu='ncdu --color dark'
-alias neofetch='neofetch --kitty ~/Pictures/backgrounds/trees.jpg'
+#alias neofetch='neofetch --kitty ~/Pictures/backgrounds/trees.jpg'
+alias nv='nvim'
+alias open='xdg-open'
 alias ping='prettyping --nolegend'
 alias please='sudo'
-alias paclist='pakku -Ssq | fzf --preview "pakku -Si {}" --layout=reverse'
-alias paclist-local='pakku -Qq | fzf --preview "pakku -Qil {}" --layout=reverse'
-alias rm='rm --interactive'
+alias pacquery='pakku -Qq | fzf --preview "pakku -Qil {}" --layout=reverse'
+alias pacsearch='pakku -Ssq | fzf --preview "pakku -Si {}" --layout=reverse'
+alias pkg='pakku'
+alias q='exit'
+alias rd='ranger'
+alias rm='trash-put'
 alias starwars='telnet towel.blinkenlights.nl'
 alias todo='nvim ~/Documents/todo'
 alias units='units -H ""'
 alias vim='nvim --noplugin'
-alias wallpaper='feh --no-fehbg --bg-scale'
-alias worldmap='telnet mapscii.me'
-
-#################
-# abbreviations #
-#################
-
-alias cds='consoleds'
-alias edit='$EDITOR'
-alias md='micro'
-alias nv='nvim'
-alias q='exit'
-alias rd='ranger'
-alias rmt='trash-put'
 alias wd='wget --recursive --no-clobber --page-requisites --html-extension --convert-links --no-parent'
-alias wici='nmcli device wifi connect --ask'
-alias wili='nmcli device wifi list'
-alias wttr='curl https://wttr.in/~Bainbridge+Island?q0'
-alias yt='youtube-dl --output "~/Videos/%(title)s-%(id)s.%(ext)s"'
+alias worldmap='telnet mapscii.me'
+alias wttr='curl https://wttr.in/?q0'
+alias yt='yt-dlp --output "~/Videos/%(title)s-%(id)s.%(ext)s"'
