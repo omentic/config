@@ -59,8 +59,8 @@ super + e
 
 # reload window manager
 super + r
-	bspc wm -r && sleep 0.4 &&\
-	dunstify -a "bspwm" -u low "Reloaded Window Manager"
+	bspc wm -r && sleep 0.4 && \
+	notify-send -a "bspwm" -u low "Reloaded Window Manager"
 
 ###################################
 # state and flags of bspwm leaves #
@@ -68,37 +68,33 @@ super + r
 
 # toggle tiled mode
 super + t
-	bspc node -t \~tiled
+	bspc node -t \~tiled && notify-send -a "bspwm" -u low -r "21916" "Toggle tiling mode"
 
 # toggle stacking ("floating") mode
 super + s
-	bspc node -t \~floating
+	bspc node -t \~floating && notify-send -a "bspwm" -u low -r "21916" "Toggle floating mode"
 
 # toggle gaps ("pseudo-tiled") mode
 super + g
-	bspc node -t \~pseudo_tiled
+	bspc node -t \~pseudo_tiled && notify-send -a "bspwm" -u low -r "21916" "Toggle pseudo-tiling mode"
 
 # toggle fullscreen mode
 super + f
-	bspc node -t \~fullscreen
+	bspc node -t \~fullscreen && notify-send -a "bspwm" -u low -r "21916" "Toggle fullscreen mode"
 
 # toggle monacle mode
 super + m
-	bspc desktop -l next
+	bspc desktop -l next && notify-send -a "bspwm" -u low -r "21916" "Toggle monacle mode"
 
 #######################
 # focusing and moving #
 #######################
 
 # focus the node in a given direction
-super + {h,j,k,l}
-	bspc node -f {west,south,north,east}
 super + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
 
 # swap nodes in a given direction
-super + shift + {h,j,k,l}
-	bspc node -s {west,south,north,east}
 super + shift + {Left,Down,Up,Right}
 	bspc node -s {west,south,north,east}
 
@@ -152,7 +148,9 @@ super + ctrl + {1-9}
 
 # expand a window by moving its side outward
 super + alt + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0} || \
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20, left 20 0}
+#	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving its side inward
 super + alt + shift + {Left,Down,Up,Right}
@@ -181,7 +179,7 @@ super + two-finger-click-and-drag
 # mute / lower / raise volume
 XF86Audio{Mute,LowerVolume,RaiseVolume}
 	pactl set-sink-{mute 0 toggle,volume 0 -5%,volume 0 +5%} && \
-	dunstify -a "pactl" -u low -r "865863" \
+	notify-send -a "pactl" -u low -r "865863" -i audio-volume-high \
 	"Volume: $(pulsemixer --get-volume | sed 's/ .*//')%" \
 	"$(test $(pulsemixer --get-mute) -ne 1 || echo 'mute')"
 
@@ -189,13 +187,9 @@ XF86Audio{Mute,LowerVolume,RaiseVolume}
 XF86Audio{Prev,Play,Next}
 	playerctl {previous,play-pause,next}
 
-# seek backwards by five seconds
-shift + XF86AudioPrev
-	playerctl position 5-
-
-# seek forwards by five seconds
-shift + XF86AudioNext
-	playerctl position 5+
+# seek backwards / forwards by five seconds
+shift + XF86Audio{Prev,Next}
+	playerctl position {5-,5+}
 
 ####################
 # custom media key #
@@ -203,13 +197,11 @@ shift + XF86AudioNext
 
 # color picker
 F7
-	dunstify -r "31512" "Color Picker" "Select a color" && \
-	convert -size 100x100 xc:"$(colorpicker -doq)" /tmp/color-picker.png && \
-	dunstify -r "31512" -i /tmp/color-picker.png "Color Picker" \
-	$(convert /tmp/color-picker.png -format "#%[hex:s]\n" info:) && \
-	killall -q colorpicker && \
+	notify-send -r "31512" "Color Picker" "Select a color" && \
+	maim /tmp/color-picker.png -ug $(slop -t 0) && \
+	convert -size 100x100 xc:"$(convert /tmp/color-picker.png -format '#%[hex:s]\n' info:)" /tmp/color-picker.png && \
+	notify-send -r "31512" -i /tmp/color-picker.png "Color Picker" $(convert /tmp/color-picker.png -format "#%[hex:s]\n" info:) && \
 	convert /tmp/color-picker.png -format "#%[hex:s]\n" info: | xclip -sel c
-# xcolor
 
 #######################
 # displays / monitors #
@@ -233,10 +225,9 @@ XF86Search
 
 # control the screen brightness
 XF86MonBrightness{Down,Up}
-	xbacklight {-dec 5,-inc 5} && \
-	dunstify -a "xbacklight" -u normal -r "21311" \
-	-i /usr/share/icons/Papirus-Dark/22x22/panel/xfpm-brightness-lcd.svg \
-	"Backlight: $(xbacklight -get | sed 's/\..*//')%"
+	light {-U 5,-A 5} && \
+	notify-send -a "light" -u normal -r "21311" -i xfpm-brightness-lcd \
+	"Backlight: $(light -G | sed 's/\..*//')%"
 
 ##################
 # screenshooting #
@@ -245,21 +236,21 @@ XF86MonBrightness{Down,Up}
 # capture the entire screen
 Print
 	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -u && \
-	dunstify -a "maim" -u low -r "131913" \
+	notify-send -a "maim" -u low -r "131913" \
 	"Screenshot captured" "screen saved to ~/Pictures/screenshots/$(date +%Y)"
 
 # capture the current focus
 super + shift + Print
 	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -ui \
 	$(xdotool getactivewindow) && \
-	dunstify -a "maim" -u low -r "131913" \
+	notify-send -a "maim" -u low -r "131913" \
 	"Screenshot captured" "focus saved to ~/Pictures/screenshots/$(date +%Y)"
 
 # capture a select area
 super + Print
-	dunstify -a "maim" -u low -r "131913" "Select an area" && \
-	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -us && \
-	dunstify -a "maim" -u low -r "131913" \
+	notify-send -a "maim" -u low -r "131913" "Select an area" && \
+	maim ~/Pictures/screenshots/$(date +%Y)/$(date +%Y-%m-%d-%H%M%S.png) -uslc 0.3,0.4,0.6,0.4 && \
+	notify-send -a "maim" -u low -r "131913" \
 	"Screenshot captured" "area saved to ~/Pictures/screenshots/$(date +%Y)"
 
 #####################
@@ -273,21 +264,36 @@ altgr + key
 #	`	1	2	3	4	5	6	7	8	9	0	-	=	backspace
 #
 #	q	w	e	r	t	y	u	i	o	p	[	]	\
-#			e			y	u	i	o	p	[	]	\
+#						y	u	i	o	p	[	]	\
 #	tab	a	s	d	f	g	h	j	k	l	;	'	enter
 #											;	'
 #			z	x	c	v	b	n	m	,	.	/
 #			z	x	c	v	b	n		,	.
 #
+#	notifications	workspaces	-	=	lock
+#	quit	close	rldkeys	reload	tiled	y	u	i	o	p	switching	\
+#	cycle	clkwse	stack	cclkwse	fullscreen	pseudo	directional	;	'	terminal
+#			z	x	c	v	b	n	monacle	,	.	help
+#
+#	so if i move monacle and tiled to a and d... that'll divy up functions by row
+#	just need to find a good miemonic
+#	a: tiled
+#	d: monacle
+#	e: reload sxhkd?
 #
 #	mod + shift
 #	`	1	2	3	4	5	6	7	8	9	0	-	=	backspace
-#														backspace
+#												-	=	backspace
 #	q	w	e	r	t	y	u	i	o	p	[	]	\
-#		w	e		t	y	u	i	o	p	[	]	\
+#		w	e	r	t	y	u	i	o	p			\
 #	tab	a	s	d	f	g	h	j	k	l	;	'	enter
 #		a	s	d	f	g	h	j	k	l	;	'	enter
 #			z	x	c	v	b	n	m	,	.	/
+#			z	x	c	v	b	n	m	,	.	/
+#
+#	notifications	to-workspaces				-	=	backspace
+#	xkill	w	e	r	t	y	u	i	o	p	to-switch	\
+#	backcycle	a	s	d	f	g	h	j	k	l	;	'	enter
 #			z	x	c	v	b	n	m	,	.	/
 #
 
