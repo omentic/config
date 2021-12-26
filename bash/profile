@@ -9,7 +9,8 @@
 #############
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export ANDROID_HOME="$HOME/Applications/android-sdk"
+export ANDROID_HOME="$HOME/.android/sdk"
+export ANDROID_SDK_ROOT="$HOME/.android/sdk"
 export GOPATH="$HOME/.go"
 export GEM_HOME="$HOME/.gems"
 export NNN_FIFO=/tmp/nnn.fifo
