@@ -1,0 +1,7 @@
+[
+	{
+		"button": "button",
+		"modifiers": ["ctrl"],
+		"press_command": "goto_definition",
+	}
+]

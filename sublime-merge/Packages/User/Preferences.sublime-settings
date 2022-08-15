@@ -1,0 +1,7 @@
+// Settings in here override those in "Default/Preferences.sublime-settings",
+// and are overridden in turn by syntax-specific settings.
+{
+
+	"hide_menu": true,
+	"side_bar_layout": "locations_as_column",
+}

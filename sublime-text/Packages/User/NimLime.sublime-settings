@@ -1,0 +1,7 @@
+{
+    "error_handler.enabled": false,
+    "check.on_save.enabled": false,
+    "check.current_file.enabled": false,
+    "check.external_file.enabled": false,
+    "check.clear_errors.enabled": false
+}

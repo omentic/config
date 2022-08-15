@@ -1,0 +1,84 @@
+// Documentation at https://www.sublimetext.com/docs/themes.html
+{
+    "extends": "Default Dark.sublime-theme",
+    "variables":
+    {
+        "base_hue": "#383C4A",
+        "tabset_medium_dark_bg": "#2E333F", // color(var(--background) blend(white 94%))
+    },
+    "rules":
+    [
+        {
+            "class": "tab_label",
+            "font.size": 13.0,
+        },
+        {
+            "class": "sidebar_label",
+            "font.size": 14.0,
+        },
+        {
+            "class": "status_bar",
+            "content_margin": [8, 5, 4, 5]
+        },
+        {
+            "class": "label_control",
+            "parents": [{ "class": "status_bar" }],
+            // "font.face": "Comic Mono",
+            "font.size": 12.0
+        },
+        {
+            "class": "tab_label",
+            "font.size": 13,
+        },
+        {
+            "class": "tabset_control",
+            "settings": {"file_tab_style": ["", "rounded"]},
+            "tab_height": 36,
+        },
+        {
+            "class": "tabset_control",
+            "settings": {"file_tab_style": ["", "square"]},
+            "tab_height": 38,
+        },
+        { // Todo: Move tab close button down a pixel or two
+            "class": "tab_close_button",
+            "content_margin": [8, 8],
+            "layer0.texture": "User/assets/close_unselected.png",
+            "layer1.texture": "User/assets/close_hover.png",
+            "layer2.texture": "User/assets/close_pressed.png",
+            "layer3.texture": "User/assets/close_dirty.png",
+            "layer0.opacity": 1.0,
+            "layer1.opacity": 0.0,
+            "layer2.opacity": 0.0,
+            "layer3.opacity": 0.0,
+        },
+        {
+            "class": "tab_close_button",
+            "attributes": ["hover"],
+            "layer0.opacity": 0.0,
+            "layer1.opacity": 1.0,
+            "layer2.opacity": 0.0,
+            "layer3.opacity": 0.0,
+
+        },
+        {
+            "class": "tab_close_button",
+            "attributes": ["pressed"],
+            "layer0.opacity": 0.0,
+            "layer1.opacity": 0.0,
+            "layer2.opacity": 1.0,
+            "layer3.opacity": 0.0,
+
+        },
+        {
+            "class": "tab_close_button",
+            "parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+            "content_margin": [8, 8],
+            "layer0.opacity": 0.0,
+            "layer1.opacity": 0.0,
+            "layer2.opacity": 0.0,
+            "layer3.opacity": 1.0,
+
+        }
+    ]
+}
