@@ -14,6 +14,12 @@
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
+bind '"\e[5~":history-search-backward'
+bind '"\e[6~":history-search-forward'
+
+# ctrl+backspace to delete the previous word
+bind '"\C-h":backward-kill-word'
+
 ##########
 # header #
 ##########
@@ -56,6 +62,7 @@ alias config='git --git-dir=$HOME/.config/.git --work-tree=$HOME/.config'
 alias cp='cp -i'
 cdls() { cd "$@" && ls --color=auto; }
 alias cs='cdls'
+alias direwolf='direwolf -t 0'
 alias df='df -h'
 alias edit='$EDITOR'
 alias fd='fd --no-ignore-vcs'
@@ -64,8 +71,10 @@ alias help='tldr -p'
 alias latin='words'
 alias less='less -FR'
 alias link='ln'
+alias l='ls --color=auto'
 alias ls='ls --color=auto'
 alias ll='ls -lv'
+alias m='micro'
 alias mc='micro'
 alias mocp='mocp --config ~/.config/moc/config'
 alias moc='mocp --config ~/.config/moc/config'
@@ -75,7 +84,7 @@ alias ncdu='ncdu --color dark'
 alias nv='nvim'
 alias open='xdg-open'
 alias ping='prettyping --nolegend'
-alias pkmn='~/Projects/scripts/pkmn/pokemon-icat.sh'
+alias pkmn='~/Applications/scripts/pkmn/pokemon-icat.sh'
 alias please='sudo'
 alias pacquery='pakku -Qq | fzf --preview "pakku -Qil {}" --layout=reverse'
 alias pacsearch='pakku -Ssq | fzf --preview "pakku -Si {}" --layout=reverse'
@@ -88,7 +97,16 @@ alias todo='nvim ~/Documents/todo'
 alias units='units -H ""'
 alias vim='nvim --noplugin'
 alias wd='wget --recursive --no-clobber --page-requisites --html-extension --convert-links --no-parent'
+alias wiki='ranger ~/Wiki/'
 alias worldmap='telnet mapscii.me'
 alias wttr='curl https://wttr.in/?q0'
-alias yt='yt-dlp --output "~/Videos/%(title)s-%(id)s.%(ext)s"'
+alias yt='yt-dlp --output "~/Videos/%(title)s.%(ext)s"'
+alias yts='yt-dlp --output "~/Videos/%(title)s.%(ext)s" --embed-subs'
 alias ytm='yt-dlp --extract-audio --audio-format mp3 --output "~/Music/%(title)s.%(ext)s"'
+
+alias minecraft-mouse='gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false'
+alias unminecraft-mouse='gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing true'
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION

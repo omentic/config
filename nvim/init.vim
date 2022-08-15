@@ -17,29 +17,51 @@ call plug#begin('~/.config/nvim/plugged')
 
 	" Functionality
 	Plug 'https://github.com/j-james/vim-heresy'
-	Plug 'https://github.com/scrooloose/nerdtree'
-	Plug 'https://github.com/airblade/vim-gitgutter'
+	Plug 'https://github.com/ms-jpq/chadtree' " , {'do': 'CHADdeps'}
 	Plug 'https://github.com/tpope/vim-sleuth'
-	" Plug 'https://github.com/tpope/vim-surround'
-	" Plug 'https://github.com/terryma/vim-multiple-cursors'
+	Plug 'https://github.com/tpope/vim-commentary'
+	Plug 'https://github.com/airblade/vim-gitgutter'
+	" FIXME: devicons colors, chadtree offset, and ctrl+w/ctrl+t
+	" FIXME: multiple cursors
+	Plug 'https://github.com/romgrk/barbar.nvim'
+	Plug 'https://github.com/nvim-lua/plenary.nvim'
+	Plug 'https://github.com/nvim-telescope/telescope.nvim'
 	" Plug 'https://github.com/mg979/vim-visual-multi'
+	" Plug 'https://github.com/tpope/vim-surround'
 
 	" Languages
-	Plug 'https://github.com/fatih/vim-go', {'for':'go'}
-	Plug 'https://github.com/alaviss/nim.nvim', {'for':'nim'}
-	Plug 'https://github.com/prabirshrestha/asyncomplete.vim', {'for':'nim'}
-	" Plug 'https://github.com/dense-analysis/ale'
+	Plug 'https://github.com/ms-jpq/coq_nvim' " , {'do': 'COQdeps'}
+	Plug 'https://github.com/ms-jpq/coq.artifacts'
+	" FIXME: is tree-sitter working?
+	Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'https://github.com/neovim/nvim-lspconfig'
+	Plug 'https://github.com/alaviss/nim.nvim', {'for': 'nim'}
+	Plug 'https://github.com/KeitaNakamura/tex-conceal.vim'
+	" Plug 'https://github.com/lervag/vimtex'
 
 	" Theming
 	Plug 'https://github.com/joshdick/onedark.vim'
 	Plug 'https://github.com/itchyny/lightline.vim'
-	Plug 'https://github.com/ryanoasis/vim-devicons'
+	" TODO: show space/tab indications on selection
+	Plug 'https://github.com/lukas-reineke/indent-blankline.nvim'
+	Plug 'https://github.com/kyazdani42/nvim-web-devicons' " ryanoasis/vim-devicons
 
 call plug#end()
 
-"=====================
-" Colorscheme Tweaks =
-"=====================
+"===================
+" Language Servers =
+"===================
+
+lua << EOF
+require'lspconfig'.jedi_language_server.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.racket_langserver.setup{}
+require'lspconfig'.nimls.setup{}
+EOF
+
+"===================
+" Interface Tweaks =
+"===================
 
 " Enable syntax highlighting
 syntax on
@@ -51,6 +73,10 @@ highlight normal ctermbg=none
 highlight comment cterm=italic
 " Theme lightline to match colorscheme
 " let g:lightline = {'colorscheme':'onedark'}
+" Theme CHADtree to match-ish colorscheme
+let g:chadtree_settings = {'theme.text_colour_set': 'nord'}
+let g:coq_settings = {'auto_start': v:true, 'keymap.jump_to_mark': '', 'keymap.recommended': v:false}
+let bufferline = {'animation': v:false, 'auto_hide': v:true}
 
 "=======================
 " Indentation Behavior =
@@ -65,7 +91,7 @@ set softtabstop=4
 " Use four characters for indents
 set shiftwidth=4
 " Insert spaces when the tab key is pressed
-" set expandtab
+set expandtab
 
 "==============
 " Spell Check =
@@ -89,37 +115,77 @@ autocmd filetype markdown,text syntax match CapitalizedWords '\<\u\S*\>' contain
 " Remap : to ;
 nnoremap ; :
 
-" Add word to dictionary
-inoremap <C-M-D> <C-O>zg
+" Add and remove words from dictionary
+" FIXME: make more intuitive
+inoremap <M-D> <C-O>zg
+inoremap <M-S-D> <C-O>zug
 
-" Toggle NERDTree with Ctrl+B
-nnoremap <C-B> :NERDTreeToggle<CR>
-inoremap <C-B> <C-O>:NERDTreeToggle<CR>
+" Toggle CHADtree with Ctrl+B
+nnoremap <C-B> :CHADopen<CR>
+inoremap <C-B> <C-O>:CHADopen<CR>
+" TODO: make this main binding, Ctrl+B just opens sidebar
+nnoremap <C-S-E> :CHADopen<CR>
+inoremap <C-S-E> <C-O>:CHADopen<CR>
 
 " Update plugins
-nnoremap <C-U> :PlugUpdate<CR>
-inoremap <C-U> <C-O>:PlugUpdate<CR>
+nnoremap <C-S-X> :PlugUpdate<CR>
+inoremap <C-S-X> <C-O>:PlugUpdate<CR>
 
 " Open a new tab
-" TODO: what does <silent> do?
+" <silent> prevents brief flashes
 nnoremap <silent> <C-T> :tabnew<CR>
 inoremap <silent> <C-T> <C-O>:tabnew<CR>
 snoremap <silent> <C-T> <C-O>:tabnew<CR>
 " Cycle through tabs
-nnoremap <silent> <C-Tab> :tabnext<CR>
-inoremap <silent> <C-Tab> <C-O>:tabnext<CR>
-snoremap <silent> <C-Tab> <C-O>:tabnext<CR>
-" Cycle backwards through tabs
-nnoremap <silent> <C-S-Tab> :tabprevious<CR>
-inoremap <silent> <C-S-Tab> <C-O>:tabprevious<CR>
-snoremap <silent> <C-S-Tab> <C-O>:tabprevious<CR>
+nnoremap <silent> <C-S-T> :tabnext<CR>
+inoremap <silent> <C-S-T> <C-O>:tabnext<CR>
+snoremap <silent> <C-S-T> <C-O>:tabnext<CR>
+
+" Save As
+" nnoremap <C-S-S> :w<Space>
+" inoremap <C-S-S> <C-O>:w<Space>
+" snoremap <C-S-S> <C-O>:w<Space>
+
+" Comment out lines
+nmap <C-_> gcc
+imap <C-_> <C-O>gcc
+smap <C-_> <C-O>gc
+
+" Bugfix: Map <C-S-Z> to redo to avoid backgrounding Neovim
+inoremap <silent> <C-S-Z> <C-O><C-R>
+snoremap <silent> <C-S-Z> <Esc><C-O><C-R>
+
+" Bugfix: Properly unindent in insert mode
+inoremap <S-Tab> <C-O><<
+
+" Bugfix: Don't assume links are tags
+nnoremap <C-LeftMouse> gx
+inoremap <C-LeftMouse> <C-O>gx
+
+" Delete previous word
+" FIXME: this doesn't properly overwrite vim-heresy
+inoremap <C-H> <C-W>
+" set backspace=indent,eol,start
+
+" coq
+ino <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
+ino <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
+ino <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
+ino <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
+ino <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+ino <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
+
+" inoremap <C-O> <C-O>:edit<Space>
 
 "=================
 " Other Settings =
 "=================
 
 " End files with an (invisible) newline
-set listchars=eol:$
+"set listchars=eol:$
+" FIXME: Show spaces
+set listchars=space:⋅
+set listchars=tab:→.
 " Enable mouse support
 set mouse=a
 " Turn on line numbers
@@ -137,10 +203,11 @@ set nofoldenable
 " Ignore capitalization in search
 set ignorecase
 
-inoremap <lt>/ </<C-X><C-O><Esc>==gi
+" Auto-close HTML tags
+" inoremap <lt>/ </<C-X><C-O><Esc>==gi
 
-au User asyncomplete_setup call asyncomplete#register_source({
-	\ 'name': 'nim',
-	\ 'whitelist': ['nim'],
-	\ 'completor': {opt, ctx -> nim#suggest#sug#GetAllCandidates({start, candidates -> asyncomplete#complete(opt['name'], ctx, start, candidates)})}
-	\ })
+set conceallevel=2
+let g:tex_superscripts= "[0-9a-zA-W.,:;+-<>/()=]"
+let g:tex_subscripts= "[0-9aehijklmnoprstuvx,+-/().]"
+let g:tex_conceal='abdgm'
+let g:vimtex_view_method = 'mupdf'

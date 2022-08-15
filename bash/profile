@@ -16,6 +16,7 @@ export GEM_HOME="$HOME/.gems"
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG="v:preview-tui"
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK_THEME="Arc-Dark"
 
 ################
 # applications #
@@ -37,10 +38,9 @@ export DEVKITPPC=/opt/devkitpro/devkitPPC
 # PATH #
 ########
 
-export PATH="$PATH:$HOME/Applications"
 export PATH="$PATH:$HOME/Applications/android-studio/bin"
 export PATH="$PATH:$HOME/Applications/android-sdk/platform-tools"
-export PATH="$PATH:$HOME/Applications/flutter/bin"
+export PATH="$PATH:$HOME/Applications/scripts"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
