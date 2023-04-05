@@ -1,6 +1,6 @@
 [user]
-	name = j-james
-	email = jj@j-james.me
+	name = JJ
+	email = git@toki.la
 [core]
 	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
@@ -10,3 +10,7 @@
 	rebase = false
 [init]
 	defaultBranch = main
+[push]
+    autoSetupRemote = true
+[color]
+	ui = auto

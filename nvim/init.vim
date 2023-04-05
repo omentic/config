@@ -16,7 +16,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 	" Functionality
-	Plug 'https://github.com/j-james/vim-heresy'
+	Plug 'https://github.com/tombh/novim-mode'
 	Plug 'https://github.com/ms-jpq/chadtree' " , {'do': 'CHADdeps'}
 	Plug 'https://github.com/tpope/vim-sleuth'
 	Plug 'https://github.com/tpope/vim-commentary'
@@ -53,6 +53,9 @@ call plug#end()
 "===================
 
 lua << EOF
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.gopls.setup{}
 require'lspconfig'.jedi_language_server.setup{}
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.racket_langserver.setup{}
@@ -69,8 +72,9 @@ syntax on
 colorscheme onedark
 " Use the terminal's background as Neovim's background
 highlight normal ctermbg=none
-" Italicize comments
-highlight comment cterm=italic
+" Italicize comments, and make them at least moderately readable
+highlight comment cterm=italic ctermfg=050505
+highlight linenr ctermfg=grey
 " Theme lightline to match colorscheme
 " let g:lightline = {'colorscheme':'onedark'}
 " Theme CHADtree to match-ish colorscheme
@@ -141,15 +145,10 @@ nnoremap <silent> <C-S-T> :tabnext<CR>
 inoremap <silent> <C-S-T> <C-O>:tabnext<CR>
 snoremap <silent> <C-S-T> <C-O>:tabnext<CR>
 
-" Save As
-" nnoremap <C-S-S> :w<Space>
-" inoremap <C-S-S> <C-O>:w<Space>
-" snoremap <C-S-S> <C-O>:w<Space>
-
 " Comment out lines
-nmap <C-_> gcc
-imap <C-_> <C-O>gcc
-smap <C-_> <C-O>gc
+nmap <C-/> gcc
+imap <C-/> <C-O>gcc
+smap <C-/> <C-O>gc
 
 " Bugfix: Map <C-S-Z> to redo to avoid backgrounding Neovim
 inoremap <silent> <C-S-Z> <C-O><C-R>
@@ -162,9 +161,8 @@ inoremap <S-Tab> <C-O><<
 nnoremap <C-LeftMouse> gx
 inoremap <C-LeftMouse> <C-O>gx
 
-" Delete previous word
-" FIXME: this doesn't properly overwrite vim-heresy
-inoremap <C-H> <C-W>
+" Delete previous word (C-BackSpace is now mappable in kitty :) )
+inoremap <C-BackSpace> <C-W>
 " set backspace=indent,eol,start
 
 " coq

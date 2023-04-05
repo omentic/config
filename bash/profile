@@ -4,6 +4,11 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+if [ -n "$DESKTOP_SESSION" ];then
+  eval $(gnome-keyring-daemon --start)
+  export SSH_AUTH_SOCK
+fi
+
 #############
 # locations #
 #############
@@ -17,14 +22,16 @@ export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG="v:preview-tui"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK_THEME="Arc-Dark"
+export GTK_CSD=0
+export GTK_USE_PORTAL=1
 
 ################
 # applications #
 ################
 
-export BROWSER=/usr/bin/firefox-developer-edition
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+export BROWSER=/usr/bin/chromium
+export EDITOR=/usr/bin/hx
+export VISUAL=/usr/bin/hx
 
 ###############################
 # nintendo switch development #
@@ -42,7 +49,10 @@ export PATH="$PATH:$HOME/Applications/android-studio/bin"
 export PATH="$PATH:$HOME/Applications/android-sdk/platform-tools"
 export PATH="$PATH:$HOME/Applications/scripts"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
+export PATH="$PATH:$HOME/.emacs.d/bin"
+export PATH="$PATH:$HOME/.ghcup/bin"
 export PATH="$PATH:$HOME/.go/bin"
 export PATH="$PATH:$HOME/.nimble/bin"
+export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
