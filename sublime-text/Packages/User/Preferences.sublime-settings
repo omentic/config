@@ -3,7 +3,7 @@
     "color_scheme": "apropos.sublime-color-scheme",
     "dark_theme": "apropos.sublime-theme",
     "light_theme": "apropos.sublime-theme",
-    "font_size": 13,
+    "font_size": 14,
     "font_face": "Comic Mono",
     "caret_style": "blink",
     "caret_extra_top": 2,
@@ -22,24 +22,9 @@
     "hot_exit": "only_on_quit",
     "remember_full_screen": true,
     "shift_tab_unindent": true,
-    // "word_wrap": false,
+    "word_wrap": true,
     "ignored_packages":
     [
         "Vintage",
-    ],
-    "added_words":
-    [
-		"renderer",
-        "destructors",
-        "Nim",
-        "func",
-        "proc",
-        "bool",
-        "codebase",
-        "whitespace",
-        "enum",
-        "ascii",
-        "async",
-        "iterable",
     ],
 }

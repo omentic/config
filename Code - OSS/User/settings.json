@@ -1,6 +1,7 @@
 {
-	"java.home": "/usr/lib/jvm/default",
 	"breadcrumbs.enabled": true,
+	"diffEditor.ignoreTrimWhitespace": false,
+	"diffEditor.renderSideBySide": false,
 	"editor.acceptSuggestionOnEnter": "off",
 	"editor.emptySelectionClipboard": false,
 	"editor.fontFamily": "'Comic Mono', 'Droid Sans Mono', 'JoyPixels', monospace",
@@ -10,7 +11,7 @@
 		"comments": false,
 		"strings": false
 	},
-	"editor.renderFinalNewline": false,
+	"editor.renderFinalNewline": "off",
 	"editor.selectionClipboard": false,
 	"editor.suggestSelection": "first",
 	"editor.tabSize": 4,
@@ -23,23 +24,23 @@
 	"files.trimTrailingWhitespace": true,
 	"keyboard.dispatch": "keyCode",
 	"security.workspace.trust.enabled": false,
-	"telemetry.enableTelemetry": false,
-	"telemetry.enableCrashReporter": false,
+	"telemetry.telemetryLevel": "off",
+	"terminal.external.linuxExec": "kitty",
 	"window.menuBarVisibility": "toggle",
 	"window.zoomLevel": 1,
+	"workbench.colorTheme": "Arc Dark Theme",
 	"workbench.iconTheme": "material-icon-theme",
 	"workbench.startupEditor": "none",
-	"zenMode.hideTabs": false,
 	"go.autocompleteUnimportedPackages": true,
 	"go.useLanguageServer": true,
 	"java.configuration.checkProjectSettingsExclusions": false,
 	"java.errors.incompleteClasspath.severity": "ignore",
+	"java.jdt.ls.java.home": "/usr/lib/jvm/default",
 	"java.project.importOnFirstTimeStartup": "automatic",
 	"java.semanticHighlighting.enabled": true,
 	"python.experiments.enabled": false,
 	"python.jediEnabled": false,
-	"python.languageServer": "Pylance",
-	"python.pythonPath": "/bin/python",
+	"python.languageServer": "Jedi",
 	"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 	"todo-tree.general.tags": [
 		"TODO",
@@ -114,7 +115,12 @@
 	},
 	"todo-tree.regex.regex": "((@|//|#|<!--|;| * |/\\*|^)\\s*($TAGS)|^\\s*- \\[ ,\\])",
 	"todo-tree.tree.expanded": true,
-	"workbench.colorTheme": "Arc Dark",
-	"diffEditor.ignoreTrimWhitespace": false,
-	"diffEditor.renderSideBySide": false
+	"files.exclude": {
+		"**/.DS_Store": false,
+		"**/.git": false,
+		"**/.hg": false,
+		"**/.svn": false,
+		"**/CVS": false,
+		"**/Thumbs.db": false
+	}
 }

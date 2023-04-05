@@ -3,5 +3,7 @@
 {
 
 	"hide_menu": true,
-	"side_bar_layout": "locations_as_column",
+	"side_bar_layout": "commit_graph_as_column",
+	"render_commit_dialog_message_at_top": false,
+	"theme": "auto",
 }

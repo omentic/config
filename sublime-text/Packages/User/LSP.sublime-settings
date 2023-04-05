@@ -1,10 +1,15 @@
 // Settings in here override those in "LSP/LSP.sublime-settings"
 {
+    "diagnostics_panel_include_severity_level": 3,
     "clients": {
-        "nimlsp": {
-            "command": ["nimlsp"],
+        "nimlangserver": {
+            "command": ["nimlangserver"],
             "enabled": true,
-            "selector": "source.nim"
-        }
-    }
+            "selector": "source.nim",
+        },
+        "rust-analyzer":
+        {
+			"enabled": true,
+		}
+    },
 }
