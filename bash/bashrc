@@ -110,6 +110,35 @@ alias yt='yt-dlp --output "~/Videos/%(title)s.%(ext)s"'
 alias yts='yt-dlp --output "~/Videos/%(title)s.%(ext)s" --embed-subs'
 alias ytm='yt-dlp --extract-audio --audio-format mp3 --output "~/Music/%(title)s.%(ext)s"'
 
+alias blame='git blame'
+# alias branch='git branch'
+# alias checkout='git checkout' # redo interface around branches tbh
+# alias restore='git restore'
+# alias switch='git switch'
+alias clone='git clone'
+alias commit='git commit'
+# bisect
+# diff
+# difftool
+# range-diff
+# show
+# show-branch
+# whatchanged
+alias fetch='git fetch'
+alias log='git log'
+# cherry-pick
+# merge
+# mergetool
+# replace
+alias pull='git pull'
+alias push='git push'
+alias rebase='git rebase' # need to use this more
+alias remote='git remote' # redo interface around remote tbh
+alias reset='git reset'
+alias stage='git stage'
+alias stash='git stash' # need to use this more
+alias status='git status'
+
 alias minecraft-mouse='gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false'
 alias unminecraft-mouse='gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing true'
 
