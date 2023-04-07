@@ -1,0 +1,114 @@
+theme = "base16_terminal"
+
+[editor]
+initial-mode = "insert"
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+
+# Todo: fix the undo buffer (should increment on every save)
+# :write should give some visual feedback
+
+[keys.normal]
+"up" = "move_line_up"
+"down" = "move_line_down"
+"left" = "move_char_left"
+"right" = "move_char_right"
+"pageup" = "page_up"
+"pagedown" = "page_down"
+
+# esc = "collapse_selection"
+esc = "insert_mode"
+backspace = "delete_selection"
+
+C-q = ":quit!"
+C-w = ":quit"
+C-y = "redo"
+C-p = "command_palette"
+C-s = ":write"
+C-f = "search"
+C-z = "undo"
+
+[keys.insert]
+# hmm: "x" and "s" are helpful, actually
+# also macros
+C-q = ":quit!"                  # standard
+C-w = "wclose"                  # standard
+C-e = "goto_line_end"           # emacs
+C-r = "rename_symbol"           # lsp
+C-t = "goto_type_definition"    # lsp
+C-y = "redo"                    # standard
+C-u = "kill_to_line_start"      # emacs
+C-i = "goto_implementation"     # lsp
+C-o = "file_picker"             # helix
+C-p = "command_palette"         # helix
+C-a = "goto_line_start"         # emacs
+C-s = "commit_undo_checkpoint"  # helix
+# C-s = ":write"
+C-d = "goto_definition"         # lsp
+# C-d = "copy_selection_on_next_line"
+# C-S-d = "copy_selection_on_prev_line"
+C-f = "search"                  # helix
+C-g = "goto_line"
+# C-h = ""
+C-j = "insert_newline"          # emacs
+C-k = "kill_to_line_end"        # emacs
+C-l = "goto_reference"          # lsp
+C-z = "undo"                    # standard
+# C-S-z = "redo" # currently fucked
+C-x = "yank_main_selection_to_clipboard"  # standard
+C-c = "yank_main_selection_to_clipboard"  # standard
+C-v = "paste_clipboard_before"            # standard
+C-b = "reveal_current_file"               # helix
+# C-n
+C-m = "replay_macro"                      # helix
+C-S-m = "record_macro"                    # helix
+
+#hover
+#buffer_picker
+#symbol_picker
+#workspace_symbol_picker
+#code_action (???)
+
+"C-/" = "toggle_comments"
+"C-:" = "command_mode"
+# C-space = "space_mode"
+C-space = "completion"
+C-backspace = "delete_word_backward"
+C-del = "delete_word_forward"
+
+#C-tab
+#C-S-tab
+#C-`
+#C-S-`
+
+C-left = "move_prev_word_start"
+C-right = "move_next_word_end"
+# C-up
+# C-down
+
+[keys.select]
+
+# missing from nvim:
+# vim-heresy (will get used to helix first then write)
+# an alternative is that i instead implement readline functions
+# chadtree (although i never used it lol)
+# vim-gitgutter
+# tex-conceal
+# spellcheck

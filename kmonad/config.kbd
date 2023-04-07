@@ -1,0 +1,133 @@
+;; KMonad
+
+;; Configuration
+(defcfg
+  input (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+  ;; input (device-file "/dev/input/by-id/usb-Lenovo_TrackPoint_Keyboard_II-event-kbd")
+  output (uinput-sink "KMonad output")
+  fallthrough true
+  allow-cmd true
+)
+
+;; Source
+(defsrc
+  esc  f1  f2  f3  f4  f5  f6  f7  f8  f9  f10 f11 f12 home end ins del
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /   rsft  pgup  up  pgdn
+  lctl lmet lalt           spc            ralt prnt rctl      left down rght
+)
+
+;; Aliases
+(defalias
+  sft (layer-toggle shift)
+  cap (layer-switch shift-lock)
+  nor (layer-switch normal)
+  cpe (layer-toggle compose)
+  cps (layer-toggle compose-shift)
+)
+
+;; Layers
+(deflayer normal
+  @cap mute vold volu f4  brdn brup f7 f8 pp prev next prnt home end ins del
+  $    1    2    3    4    5    6    7    8    9    0    -    +    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \\
+  esc  a    s    d    f    g    h    j    k    l    :    '    ret
+  @sft z    x    c    v    b    n    m    ,    .    /   @sft  pgup  up  pgdn
+  lctl lmet lalt           spc            ralt @cpe rctl      left down rght
+)
+
+(deflayer shift
+  @cap f1  f2  f3  f4  f5  f6  f7  f8  f9  f10 f11 f12 home end ins del
+  ~        !    @    <    >    %    ^    &    *   \(   \) \_  =  S-bspc
+  S-tab  S-q  S-w  S-e  S-r  S-t  S-y  S-u  S-i  S-o  S-p  {  }    |
+  S-esc  S-a  S-s  S-d  S-f  S-g  S-h  S-j  S-k  S-l    ;  "  S-ret
+  _      S-z  S-x  S-c  S-v  S-b  S-n  S-m    #    `    ?  _  S-pgup S-up S-pgdn
+  S-lctl S-lmet S-lalt   S-spc      S-ralt S-prnt S-rctl    S-left S-down S-rght
+)
+
+;; for entering long numerical expressions
+(deflayer shift-lock
+  @nor  _   _   _   _   _   _   _   _   _   _   _   _     _   _   _   _
+  %        1    2    3    4    5    6    7    8    9    0  -  +  S-bspc
+  S-tab    Q    W    E    R    T    Y    U    I    O    P  *  /    =
+  @nor     A    S    D    F    G    H    J    K    L   \(  \)  S-ret
+  @sft     Z    X    C    V    B    N    M    <    ^    > @sft _  _  _
+  _    _    _              _              _    _    _          _  _  _
+)
+
+;; for ipa
+(deflayer compose
+  _   _   _   _   _    _   _   _   _    _   _   _   _    _   _   _   _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  @cps _    _    _    _    _    _    _    _    _    _    @cps _  _  _
+  _    _    _              _              _    _    _         _  _  _
+)
+
+;; for more ipa
+(deflayer compose-shift
+  _   _   _   _   _    _   _   _   _    _   _   _   _    _   _   _   _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _  _  _
+  _    _    _              _              _    _    _         _  _  _
+)
+
+(deflayer phonetics
+  _   _   _   _   _    _   _   _   _    _   _   _   _    _   _   _   _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _  _  _
+  _    _    _              _              _    _    _         _  _  _
+)
+
+
+;; ɨʉ ɯ ɪʏ ʊ ø ɘɵ ɤ ə ɛœ ɜɞ ʌɔ æ ɐ ɶ ɑɒ
+
+;; ʈ ɖ ɟ ɢ ʔ
+;; ɱ ɳ ɲ ŋ ɴ
+;; ʙ ʀ
+;; ⱱ ɾ ɽ
+;; ɸ β θ ð ʃ ʒ ʂ ʐ ç ʝ ɣ χ ʁ ħ ʕ ɦ
+;; ɬ ɮ
+;; ʋ ɹ ɻ ɰ
+;; ɭ ʎ ʟ
+
+;; ʘ ɓ pʼ ǀ ɗ  tʼ ǃ  ʄ kʼ ǂ ɠ sʼ ǁ ʛ ʼ
+
+;; ʍ w ɥ ʜ ʢ ʡ ɕ ʑ ɺ ɧ
+
+;; t͡s t͡ʃ t͡ɕ ʈ͡ʂ d͡z d͡ʒ d͡ʑ ɖ͡ʐ
+
+
+;; iy ɨʉ ɯu ɪʏ ʊ eø ɘɵ ɤo ə ɛœ ɜɞ ʌɔ æ ɐ aɶ ɑɒ
+
+;; p b     t d ʈ ɖ c ɟ k g q ɢ     ʔ
+;; m   ɱ   n   ɳ   ɲ   ŋ   ɴ
+;; ʙ       r               ʀ
+;; ⱱ   ɾ   ɽ
+;; ɸ β f v θ ð s z ʃ ʒ ʂ ʐ ç ʝ x ɣ χ ʁ ħ ʕ h ɦ
+;; ɬ ɮ
+;; ʋ   ɹ   ɻ   j   ɰ
+;; l   ɭ   ʎ   ʟ
+
+;; ʘ ɓ pʼ ǀ ɗ  tʼ ǃ  ʄ kʼ ǂ ɠ sʼ ǁ ʛ ʼ
+
+;; ʍ w ɥ ʜ ʢ ʡ ɕ ʑ ɺ ɧ
+
+;; t͡s t͡ʃ t͡ɕ ʈ͡ʂ d͡z d͡ʒ d͡ʑ ɖ͡ʐ
+
+
+;; (deflayer
+;;   _   _   _   _   _    _   _   _   _    _   _   _   _    _   _   _   _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _  _  _
+;;   _    _    _              _              _    _    _         _  _  _
+;; )

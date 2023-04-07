@@ -1,0 +1,56 @@
+#!/bin/sh
+
+# See the river(1), riverctl(1), and rivertile(1) man pages for complete
+# documentation.
+
+background="$HOME/Pictures/backgrounds/someday.jpg"
+lockscreen="$HOME/Pictures/backgrounds/trees.jpg"
+
+##################################
+# locking and idle configuration #
+##################################
+
+# We set swaybg immediately to not cause a visual jar
+swaybg --image $background --mode fill &
+
+#####################
+### configuration ###
+#####################
+
+# Set background and border color
+riverctl background-color       0x002b36
+riverctl border-color-focused   0x93a1a1
+riverctl border-color-unfocused 0x586e75
+
+# Set keyboard repeat rate
+riverctl set-repeat 50 300
+
+# Make certain views start floating
+riverctl float-filter-add title  "rofi - drun"
+riverctl float-filter-add title  "rofi - window"
+riverctl float-filter-add app-id "kitty"
+riverctl float-filter-add app-id "Viewnior"
+riverctl float-filter-add app-id "thunar"
+
+# Set app-ids and titles of views which should use client side decorations
+# riverctl csd-filter-add app-id "gedit"
+
+# Set and exec into the default layout generator, rivertile.
+riverctl default-layout rivertile
+rivertile -view-padding 6 -outer-padding 6 &
+
+source "$HOME/.bash_profile"
+source "$HOME/.config/river/keybindings"
+
+dunst &
+yambar &
+# kmonad runs as a systemd service and does not need to be started here
+swayidle -w \
+    timeout 300 "swaylock -f -i $lockscreen" \
+    before-sleep "swaylock -f -i $lockscreen" &
+    # TODO: timeout 200 "swaymsg 'output * dpms off'" resume "swaymsg 'output * dpms on'"
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+exec systemctl --user import-environment
+exec dbus-update-activation-environment --all
+exec gnome-keyring-daemon --start --components=secrets
