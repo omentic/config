@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #################
 ### ~/.bashrc ###
 #################
@@ -63,11 +65,13 @@ alias config='git --git-dir=$HOME/.config/.git --work-tree=$HOME/.config'
 alias cp='cp -i'
 cdls() { cd "$@" && ls --color=auto; }
 alias cs='cdls'
+alias difft='difft --color=always'
 alias direwolf='direwolf -t 0'
 alias df='df -h'
 alias edit='$EDITOR'
 alias emacs='emacs --no-window-system'
 alias fd='fd --no-ignore-vcs'
+alias firefox='firefox-developer-edition'
 alias genpass='openssl rand -base64'
 alias latin='words'
 alias less='less -FR'
@@ -92,8 +96,9 @@ alias pacsearch='pakku -Ssq | fzf --preview "pakku -Si {}" --layout=reverse'
 alias pkg='pakku'
 alias q='exit'
 alias rd='ranger'
-alias rg='rg --pretty --no-ignore --ignore-file ~/.config/rg/ignore'
-alias rga='rg --pretty --no-ignore --hidden'
+alias rg='rg --ignore-file ~/.config/rg/ignore'
+alias rga='rg --no-ignore --hidden'
+alias rgp='/usr/bin/rga'
 alias rm='trash-put'
 alias rust='evcxr'
 alias sandbox='docker run --rm --interactive --tty -v .:/home archlinux bash'
@@ -111,13 +116,14 @@ alias yts='yt-dlp --output "~/Videos/%(title)s.%(ext)s" --embed-subs'
 alias ytm='yt-dlp --extract-audio --audio-format mp3 --output "~/Music/%(title)s.%(ext)s"'
 
 alias blame='git blame'
-# alias branch='git branch'
-# alias checkout='git checkout' # redo interface around branches tbh
-# alias restore='git restore'
-# alias switch='git switch'
+alias branch='git branch'
+# bisect
+alias checkout='git checkout' # redo interface around branches tbh
+alias restore='git restore'
+alias switch='git switch'
+# cherry-pick
 alias clone='git clone'
 alias commit='git commit'
-# bisect
 # diff
 # difftool
 # range-diff
@@ -126,21 +132,41 @@ alias commit='git commit'
 # whatchanged
 alias fetch='git fetch'
 alias log='git log'
-# cherry-pick
 # merge
 # mergetool
-# replace
 alias pull='git pull'
 alias push='git push'
 alias rebase='git rebase' # need to use this more
 alias remote='git remote' # redo interface around remote tbh
+# replace
 alias reset='git reset'
 alias stage='git stage'
 alias stash='git stash' # need to use this more
 alias status='git status'
 
+alias alternia="kitty +kitten ssh apropos@alternia"
+alias beforus="kitty +kitten ssh apropos@beforus"
+alias harold="kitty +kitten ssh apropos@harold"
+alias skaia="kitty +kitten ssh root@skaia -p 413"
+alias lix="kitty +kitten ssh apropos@lix"
+
 alias minecraft-mouse='gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false'
 alias unminecraft-mouse='gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing true'
+
+pdfify() {
+  name="${1%%.*}"
+  ext="${1#${name}.}"
+  if [ "$ext" = "md" ]; then
+    pandoc --pdf-engine=typst "$1" -o "${name}.pdf" \
+    -f markdown+lists_without_preceding_blankline-blank_before_header-blank_before_blockquote
+  else
+    pandoc --pdf-engine=typst "$1" -o "${name}.pdf"
+  fi
+}
+
+recompile() {
+  while inotifywait --quiet --event modify "$2"; do $1 "$2"; done
+}
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi

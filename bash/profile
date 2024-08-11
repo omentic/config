@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #######################
 ### ~/.bash_profile ###
 #######################
@@ -20,16 +22,14 @@ export GOPATH="$HOME/.go"
 export GEM_HOME="$HOME/.gems"
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG="v:preview-tui"
-export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK_THEME="Arc-Dark"
-export GTK_CSD=0
-export GTK_USE_PORTAL=1
+export MOZ_ENABLE_WAYLAND=1
 
 ################
 # applications #
 ################
 
-export BROWSER=/usr/bin/chromium
+export BROWSER=/usr/bin/firefox-developer-edition
 export EDITOR=/usr/bin/hx
 export VISUAL=/usr/bin/hx
 
@@ -54,5 +54,8 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.emacs.d/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"
 export PATH="$PATH:$HOME/.go/bin"
+export PATH="$PATH:$HOME/.nim/bin"
 export PATH="$PATH:$HOME/.nimble/bin"
+export PATH="$PATH:$HOME/.npm/bin"
+export PATH="$PATH:$HOME/.opam/default/bin"
 export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"

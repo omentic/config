@@ -28,7 +28,7 @@
 	"terminal.external.linuxExec": "kitty",
 	"window.menuBarVisibility": "toggle",
 	"window.zoomLevel": 1,
-	"workbench.colorTheme": "Arc Dark Theme",
+	"workbench.colorTheme": "One Dark Pro",
 	"workbench.iconTheme": "material-icon-theme",
 	"workbench.startupEditor": "none",
 	"go.autocompleteUnimportedPackages": true,
@@ -122,5 +122,11 @@
 		"**/.svn": false,
 		"**/CVS": false,
 		"**/Thumbs.db": false
-	}
+	},
+	"agdaMode.connection.agdaLanguageServer": true,
+	"lean4.input.languages": [
+		"lean4",
+		"lean",
+		"agda"
+	]
 }

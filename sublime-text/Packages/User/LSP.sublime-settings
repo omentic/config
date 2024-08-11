@@ -1,15 +1,47 @@
 // Settings in here override those in "LSP/LSP.sublime-settings"
 {
     "diagnostics_panel_include_severity_level": 3,
+    "show_inlay_hints": true,
     "clients": {
-        "nimlangserver": {
-            "command": ["nimlangserver"],
-            "enabled": true,
+        "nimlsp": {
+            "command": ["nimlsp"],
             "selector": "source.nim",
+            "enabled": true
+        },
+        "racket-langserver": {
+            "command": ["racket -l racket-langserver"],
+            "selector": "source.rkt",
+            "enabled": true
         },
         "rust-analyzer":
         {
-			"enabled": true,
-		}
+			"enabled": true
+		},
+        "ocaml":
+        {
+			"enabled": true
+		},
+        "gopls":
+        {
+			"enabled": true
+		},
+        "racket-langserver":
+        {
+            "command": ["racket", "-l", "racket-langserver"],
+            "selector": "source.racket",
+            "enabled": true
+        },
+        "haskell":
+        {
+            "command": ["haskell-language-server-wrapper", "--lsp"],
+            "selector": "source.haskell",
+            "enabled": true
+        },
+        "lean":
+        {
+            "command": ["lean"],
+            "selector": "source.lean",
+            "enabled": true
+        }
     },
 }

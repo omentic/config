@@ -8,6 +8,10 @@ normal = "block"
 insert = "bar"
 select = "underline"
 
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
 [editor.soft-wrap]
 enable = true
 
@@ -22,10 +26,9 @@ nbsp = "⍽"
 tab = "→"
 newline = "⏎"
 
-# Todo: fix the undo buffer (should increment on every save)
-# :write should give some visual feedback
-
 [keys.normal]
+esc = "insert_mode"
+
 "up" = "move_line_up"
 "down" = "move_line_down"
 "left" = "move_char_left"
@@ -33,9 +36,10 @@ newline = "⏎"
 "pageup" = "page_up"
 "pagedown" = "page_down"
 
-# esc = "collapse_selection"
-esc = "insert_mode"
-backspace = "delete_selection"
+backspace = "delete_char_backward"
+del = "delete_char_forward"
+C-backspace = "delete_word_backward"
+C-del = "delete_word_forward"
 
 C-q = ":quit!"
 C-w = ":quit"
@@ -44,71 +48,61 @@ C-p = "command_palette"
 C-s = ":write"
 C-f = "search"
 C-z = "undo"
+C-b = "reveal_current_file"
 
 [keys.insert]
+esc = "normal_mode"
 # hmm: "x" and "s" are helpful, actually
 # also macros
-C-q = ":quit!"                  # standard
-C-w = "wclose"                  # standard
-C-e = "goto_line_end"           # emacs
+C-q = ":quit!"                  # sublime
+C-w = "wclose"                  # sublime
+C-e = "goto_line_end_newline"   # emacs
 C-r = "rename_symbol"           # lsp
 C-t = "goto_type_definition"    # lsp
-C-y = "redo"                    # standard
+C-y = "redo"                    # sublime
 C-u = "kill_to_line_start"      # emacs
 C-i = "goto_implementation"     # lsp
 C-o = "file_picker"             # helix
 C-p = "command_palette"         # helix
-C-a = "goto_line_start"         # emacs
-C-s = "commit_undo_checkpoint"  # helix
-# C-s = ":write"
-C-d = "goto_definition"         # lsp
-# C-d = "copy_selection_on_next_line"
+C-a = ["select_all", "select_mode"] # sublime
+# C-a = "goto_line_start"         # emacs
+C-s = ["normal_mode", ":write", "insert_mode"] # sublime
+# C-d = "goto_definition"         # lsp
+C-d = "copy_selection_on_next_line" # need to fuck around with selections first
 # C-S-d = "copy_selection_on_prev_line"
 C-f = "search"                  # helix
-C-g = "goto_line"
-# C-h = ""
+C-g = "goto_line"               # sublime
+C-h = "insert_digraph"
 C-j = "insert_newline"          # emacs
 C-k = "kill_to_line_end"        # emacs
 C-l = "goto_reference"          # lsp
-C-z = "undo"                    # standard
-# C-S-z = "redo" # currently fucked
-C-x = "yank_main_selection_to_clipboard"  # standard
-C-c = "yank_main_selection_to_clipboard"  # standard
-C-v = "paste_clipboard_before"            # standard
+C-z = "undo"                    # sublime
+# C-S-z = "redo"                  # currently fucked
+C-x = ["yank_main_selection_to_clipboard", "delete_selection"]  # sublime
+C-c = "yank_main_selection_to_clipboard"  # sublime
+C-v = "paste_clipboard_before"            # sublime
 C-b = "reveal_current_file"               # helix
 # C-n
 C-m = "replay_macro"                      # helix
 C-S-m = "record_macro"                    # helix
 
-#hover
-#buffer_picker
-#symbol_picker
-#workspace_symbol_picker
-#code_action (???)
+ret = ["insert_mode", "insert_newline"]
+# todo: make backspace conditional on selection existing
+backspace = "delete_char_backward"
 
-"C-/" = "toggle_comments"
-"C-:" = "command_mode"
-# C-space = "space_mode"
-C-space = "completion"
 C-backspace = "delete_word_backward"
 C-del = "delete_word_forward"
+"C-/" = "toggle_comments"
+"C-:" = "command_mode"
+# C-space = "space_mode" # not bindable?? huh
+C-space = "completion"
 
-#C-tab
-#C-S-tab
-#C-`
-#C-S-`
+C-left = ["move_prev_word_start", "collapse_selection"]
+C-right = ["move_next_word_end", "append_mode", "collapse_selection"]
+C-up = "move_selection_above"
+C-down = "move_selection_below"
 
-C-left = "move_prev_word_start"
-C-right = "move_next_word_end"
-# C-up
-# C-down
-
-[keys.select]
-
-# missing from nvim:
-# vim-heresy (will get used to helix first then write)
-# an alternative is that i instead implement readline functions
-# chadtree (although i never used it lol)
-# vim-gitgutter
-# tex-conceal
-# spellcheck
+C-S-left = ["select_mode", "move_prev_word_start", "insert_mode"]
+C-S-right = ["select_mode", "move_next_word_end", "insert_mode"]
+C-S-up = ["select_mode", "move_line_up", "insert_mode"]
+C-S-down = ["select_mode", "move_line_down", "insert_mode"]

@@ -1,4 +1,5 @@
 [
+    { "keys": ["ctrl+."], "command": "noop" },
     // { "keys": ["ctrl+q"], "command": "exit" },
     // { "keys": ["ctrl+w"], "command": "close" },
     // { "keys": ["ctrl+shift+w"], "command": "close_window" },
@@ -11,13 +12,21 @@
     // { "keys": ["ctrl+shift+s"], "command": "prompt_save_as" },
 
     // { "keys": ["ctrl+c"], "command": "copy" },
+    {"keys": ["ctrl+shift+c"], "command": "copy"},
     // { "keys": ["ctrl+x"], "command": "cut" },
     // { "keys": ["ctrl+v"], "command": "paste_and_indent" },
     // { "keys": ["ctrl+shift+v"], "command": "paste" },
-    // { "keys": ["ctrl+a"], "command": "select_all" },
     // { "keys": ["ctrl+z"], "command": "undo" },
-    // { "keys": ["ctrl+shift+z"], "command": "redo" },
+    { "keys": ["ctrl+shift+z"], "command": "soft_undo" },
     { "keys": ["ctrl+y"], "command": "redo" },
+
+    // { "keys": ["ctrl+a"], "command": "move_to", "args": {"to": "hardbol", "extend": false} },
+    // { "keys": ["ctrl+shift+a"], "command": "move_to", "args": {"to": "hardbol", "extend": true} },
+    // { "keys": ["ctrl+shift+a"], "command": "select_all" },
+    { "keys": ["ctrl+e"], "command": "move_to", "args": {"to": "hardeol", "extend": false} },
+    // { "keys": ["ctrl+shift+e"], "command": "move_to", "args": {"to": "hardeol", "extend": true} },
+    { "keys": ["ctrl+u"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete to Hard BOL.sublime-macro"} },
+    // { "keys": ["ctrl+shift+u"] }
 
     // { "keys": ["ctrl+f"], "command": "show_panel", "args": {"panel": "find", "reverse": false} },
     // { "keys": ["ctrl+shift+f"], "command": "show_panel", "args": {"panel": "find_in_files"} },
@@ -27,35 +36,31 @@
     // { "keys": ["ctrl+shift+h"], "command": "replace_next" },
     // { "keys": ["ctrl+g"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
     // { "keys": ["ctrl+d"], "command": "find_under_expand" },
-    { "keys": ["ctrl+e"], "command": "find_under_expand_skip" },
+    // { "keys": ["ctrl+shift+d"], "command": "find_under_expand_skip" },
+    { "keys": ["ctrl+shift+d"], "command": "soft_undo" },
 
-    { "keys": ["ctrl+shift+p"], "command": "show_overlay", "args": {"overlay": "command_palette"} },
-    { "keys": ["ctrl+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+    // { "keys": ["ctrl+shift+p"], "command": "show_overlay", "args": {"overlay": "command_palette"} },
+    // { "keys": ["ctrl+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
     // { "keys": ["ctrl+r"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
     // { "keys": ["ctrl+shift+r"], "command": "goto_symbol_in_project" },
     { "keys": ["ctrl+l"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
     { "keys": ["ctrl+shift+l"], "command": "goto_symbol_in_project" },
 
     { "keys": ["super+shift+enter"], "command": "open_terminal" },
-    { "keys": ["ctrl+b"], "command": "toggle_side_bar" },
+    // { "keys": ["ctrl+b"], "command": "toggle_side_bar" },
+    { "keys": ["ctrl+,"], "command": "toggle_side_bar" },
+    { "keys": ["ctrl+shift+b"], "command": "blame" },
     // { "keys": ["ctrl+shift+b"], "command": "build", "args": {"select": true} },
 
     { "keys": ["ctrl+m"], "command": "expand_selection", "args": {"to": "line"} },
     { "keys": ["ctrl+shift+m"], "command": "split_selection_into_lines" },
 
     // { "keys": ["ctrl+shift+q"] }
-    // { "keys": ["ctrl+e"] }
-    // { "keys": ["ctrl+shift+e"] }
     // { "keys": ["ctrl+shift+y"] }
-    // { "keys": ["ctrl+u"] },
-    // { "keys": ["ctrl+shift+u"] }
-    // { "keys": ["ctrl+shift+a"] }
-    // { "keys": ["ctrl+shift+d"] }
     // { "keys": ["ctrl+shift+g"] }
     // { "keys": ["ctrl+shift+j"] }
     // { "keys": ["ctrl+shift+k"] }
     // { "keys": ["ctrl+shift+x"] }
-    // { "keys": ["ctrl+shift+c"] }
 
     { "keys": ["ctrl+up"], "command": "swap_line_up" },
     { "keys": ["ctrl+down"], "command": "swap_line_down" },
@@ -103,7 +108,8 @@
     // { "keys": ["ctrl+k", "ctrl+9"], "command": "fold_by_level", "args": {"level": 9} },
     // { "keys": ["ctrl+k", "ctrl+0"], "command": "unfold_all" },
 
-    { "keys": ["f1"], "command": "toggle_bookmark" },
+    // { "keys": ["ctrl+m"], "command": "toggle_bookmark" },
+    // { "keys": ["ctrl+shift+m"], "command": "next_bookmark" },
     // { "keys": ["f2"], "command": "next_bookmark" },
     // { "keys": ["shift+f2"], "command": "prev_bookmark" },
     // { "keys": ["ctrl+f2"], "command": "toggle_bookmark" },
@@ -172,10 +178,10 @@
     { "keys": ["ctrl+0"], "command": "select_by_index", "args": { "index": 9 } },
 
     // Alt+left/right switches a file to group 0/1
-    { "keys": ["alt+left"], "command": "move_to_group", "args": { "group": 0 } },
-    { "keys": ["alt+right"], "command": "move_to_group", "args": { "group": 1 } },
-    { "keys": ["alt+up"], "command": "move_to_group", "args": { "group": 2 } },
-    { "keys": ["alt+down"], "command": "move_to_group", "args": { "group": 3 } },
+    // { "keys": ["alt+left"], "command": "move_to_group", "args": { "group": 0 } },
+    // { "keys": ["alt+right"], "command": "move_to_group", "args": { "group": 1 } },
+    // { "keys": ["alt+up"], "command": "move_to_group", "args": { "group": 2 } },
+    // { "keys": ["alt+down"], "command": "move_to_group", "args": { "group": 3 } },
 
     // Alt+number changes the layout
     {
@@ -331,6 +337,9 @@
     // { "keys": ["ctrl+k", "ctrl+r"], "command": "resize_pane", "args": {"orientation": "rows"} },
 
 
+    { "keys": ["ctrl+$"], "command": "toggle_terminus_panel" },
+    { "keys": ["ctrl+shift+enter"], "command": "terminus_open" },
+    { "keys": ["ctrl+shift+="], "command": "increase_font_size" },
     // Hover Popup
     {
         "command": "lsp_hover",
@@ -345,7 +354,4 @@
             }
         ]
     },
-    { "keys": ["ctrl+shift+0"], "command": "paredit_wrap_round" },
-    { "keys": ["ctrl+`"], "command": "toggle_terminus_panel" },
-    { "keys": ["ctrl+shift+="], "command": "increase_font_size" },
 ]
